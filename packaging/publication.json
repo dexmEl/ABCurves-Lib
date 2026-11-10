@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "abi": [
+    1,
+    5
+  ],
+  "include": [
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "CONTRIBUTING.md",
+    ".gitignore",
+    ".gitattributes",
+    "CMakeLists.txt",
+    "docs/**",
+    "examples/**",
+    "tools/**",
+    "packaging/**",
+    "tests/**",
+    "lib/**",
+    "API/**",
+    "Native/**"
+  ],
+  "exclude_parts": [
+    ".git",
+    ".dev-local",
+    "build",
+    "target",
+    ".venv",
+    "venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".github",
+    ".vs",
+    ".idea",
+    ".vscode"
+  ],
+  "exclude": [
+    "**/*.pyc",
+    "**/*.pyo",
+    "**/*.nbc",
+    "**/*.nbi",
+    "**/*.egg-info/**",
+    "**/*.log",
+    "**/*.tmp",
+    "**/*.bak",
+    "**/*.swp",
+    "**/*.pdb",
+    "**/*.obj",
+    "**/*.o",
+    "**/.DS_Store",
+    "**/.env",
+    "**/.env.*",
+    "**/CMakeUserPresets.json",
+    "API/benchmarks/results/**",
+    "lib/benchmarks/results/**",
+    "Native/prepared/**",
+    "Native/downloads/**",
+    "Native/runs/**",
+    "Native/results/local/**",
+    "Native/.gitignore",
+    "Native/.gitattributes",
+    "docs/qualification/**",
+    "docs/api/application_inputs.json",
+    "docs/api/application_outputs.json",
+    "docs/api/symbols.md"
+  ],
+  "restricted_assets": [],
+  "publication_blockers": [],
+  "license_coverage": {
+    "software": "MIT",
+    "models_and_embedded_tables": "MIT",
+    "datasets_and_derived_examples": "CC-BY-4.0",
+    "basis": "Maintainer confirmed that the upstream MIT license covers model weights, exports and embedded Renderer tables on 2026-11-10. Preserve upstream copyright and license notices; retain separate dataset attribution."
+  },
+  "repository_tree": "https://github.com/dexmEl/ABCurves-Lib/blob/main/",
+  "sdk": {
+    "default_models": [
+      16
+    ],
+    "documents": [
+      "docs/integration.md",
+      "docs/api/overview.md",
+      "docs/api/errors.md",
+      "docs/guides/calibration.md",
+      "docs/advanced/README.md",
+      "docs/advanced/renderer.md",
+      "docs/advanced/observations.md",
+      "docs/advanced/state-and-memory.md",
+      "docs/advanced/diagnostics.md",
+      "docs/advanced/data-and-options.md",
+      "docs/advanced/legacy-api.md"
+    ]
+  }
+}

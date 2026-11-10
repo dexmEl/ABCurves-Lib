@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.20)
+project(ABCurves VERSION 1.5.0 LANGUAGES C CXX)
+include(CTest)
+option(ABC_BUILD_TESTS "Build native and C ABI regression tests" ${BUILD_TESTING})
+option(ABC_BUILD_EXAMPLES "Build C and C++ examples" ON)
+option(ABC_BUILD_BENCHMARKS "Build reproducible benchmarks and replay tools" ON)
+option(ABC_ENABLE_ASAN "Enable AddressSanitizer validation" OFF)
+add_subdirectory(API sdk)

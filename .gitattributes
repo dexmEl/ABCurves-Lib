@@ -1,0 +1,13 @@
+# Normal text detection for maintained source; preserve frozen byte identities.
+* text=auto
+lib/models/** -text
+Native/** -text
+tests/baselines/** -text
+API/tests/step4/fixtures/** -text
+*.abcmodel -text
+*.bin -text
+*.pt -text
+*.onnx -text
+*.npz -text
+*.gz -text
+*.dll -text

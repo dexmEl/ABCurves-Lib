@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If ABCurves helps your work, please cite the software repository."
+title: "ABCurves: Human Movement Generation and Continuation"
+type: software
+authors:
+  - name: "Optima Manent"
+repository-code: "https://github.com/optima-manent/ABCurves"
+url: "https://optima-manent.github.io/ABCurves/"
+license: MIT
+version: 2.0.0

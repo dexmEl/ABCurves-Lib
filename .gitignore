@@ -1,0 +1,56 @@
+# Local SDK maintenance archives, data caches and research (never release inputs)
+/.dev-local/
+/.local-research/
+/.local-benchmarks/
+/.local-notes/
+
+# Generated build/package/test output
+/build/
+**/build/
+/dist/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Testing/
+*.obj
+*.o
+*.pdb
+*.ilk
+*.exp
+*.tlog
+*.lastbuildstate
+
+# Python and Rust development output
+__pycache__/
+*.py[cod]
+*.nbc
+*.nbi
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+target/
+.coverage
+htmlcov/
+
+# Temporary/editor/machine state
+*.tmp
+*.log
+*.bak
+*.swp
+.vs/
+.DS_Store
+Thumbs.db
+.env
+.env.local
+CMakeUserPresets.json
+
+# Historical output locations: current runners write to build/validation instead.
+/API/benchmarks/results/
+/lib/benchmarks/results/
+/Native/prepared/
+/Native/downloads/
+/Native/runs/
+/Native/results/local/
+
+# Do not ignore model .bin/.npz/.abcmodel assets or intentional reference DLLs.

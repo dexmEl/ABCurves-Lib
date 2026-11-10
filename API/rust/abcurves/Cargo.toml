@@ -1,0 +1,13 @@
+[package]
+name = "abcurves-native"
+version = "1.5.0"
+edition = "2021"
+license = "MIT"
+
+[features]
+default = ["dynamic"]
+dynamic = ["abcurves-sys/dynamic"]
+linked = ["abcurves-sys/linked"]
+
+[dependencies]
+abcurves-sys = { path = "../abcurves-sys", version = "1.5.0", default-features = false }

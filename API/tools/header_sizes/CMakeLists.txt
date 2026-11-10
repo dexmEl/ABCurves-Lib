@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.20)
+project(abc_header_sizes LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 20)
+add_executable(sizes_before sizes.cpp)
+target_include_directories(sizes_before PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../../build/step4_2_baseline_headers")
+add_executable(sizes_after sizes.cpp)
+target_compile_definitions(sizes_after PRIVATE ABC_HARDENING_SIZES)
+target_include_directories(sizes_after PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../../../lib/include")

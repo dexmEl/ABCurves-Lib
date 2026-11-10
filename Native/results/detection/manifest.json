@@ -1,0 +1,26 @@
+{
+  "schema": "abcurves.release.detection_manifest.v2",
+  "status": "final_compact_evidence",
+  "created_date": "2026-08-15",
+  "scope": {
+    "subject": "Final ABCurves pipeline detection and global Renderer similarity",
+    "panel": "Frozen 320-row, ten-session B80 panel: four Planner-to-Renderer cells for cold and warm detection; two oracle-W5 Renderer draws for the similarity ruler",
+    "handoff": "Observer reset followed by exactly 256 genuine reports ending at B",
+    "omitted": "Raw source movements (separate Release attachments) and large per-group ledgers"
+  },
+  "artifacts": {
+    "README.md": {
+      "bytes": 2433,
+      "sha256": "a960341a0e94a81c09254718d9be3202584da651fad2e03699afeaf2d9b49312"
+    },
+    "renderer_oracle_b80.json": {
+      "bytes": 3983,
+      "sha256": "9090d0395c92eea8559790c9154d28fed0617f754c98ca24bf80e5aa4356888e"
+    },
+    "pipeline_b80.json": {
+      "bytes": 21034,
+      "sha256": "692978c3859cf8fc42e451f58524a2de456a9a9f027b4c1b2f476ac8582c622e"
+    }
+  },
+  "reproduction_guide": "docs/DETECTION_REPRODUCTION.md"
+}

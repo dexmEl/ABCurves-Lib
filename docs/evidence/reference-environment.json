@@ -1,0 +1,324 @@
+{
+  "measured_date": "2026-11-10",
+  "original": "Local abcurves 2.0.0 Python reference under Native/, Numba + BLAS",
+  "upstream_base": "e197441f8d343d3b4a4069c7cae20764d0953d15",
+  "optimized": "C++20 engine 0.2.0; API ABI 1.4; direct static linkage for performance",
+  "variant_note": "16/8 ms weights are locally trained bundles, compared with the same weights in both runtimes.",
+  "models": {
+    "32": {
+      "native_sha256": "cc38312f2df704fe132068abd930dd6be8c3ea3755fe75ba62d3d3d322ece3f5",
+      "original_weights_sha256": "018a096c66213c62b429caf4a8ae6f0470f6e283248a24f476f0fed3e36ea881",
+      "source_manifest_sha256": "130ed3560c21223a42b8770d1de69a6178ae7e047ee6a32679fa3bad2f399ee5",
+      "identical_tensor_count": 43
+    },
+    "16": {
+      "native_sha256": "096be81c3a464f3fffe6f3270d091d88d237f8f39b886cbfd972ea38918850ca",
+      "original_weights_sha256": "5e435f4cf89ecf76504bd7b578c262fd1b6034bdcb8fff5f57810565dcab7266",
+      "source_manifest_sha256": "fd4dbe1b4e933d81efba3958f1519c87c590926d8ea591c0d2ff469db3a824c0",
+      "identical_tensor_count": 43
+    },
+    "8": {
+      "native_sha256": "4bb97f154ddf53bec1963ad0d9e9653f561c7f61f5dc1fb50c5dd9dc3ec0dad2",
+      "original_weights_sha256": "ec5e064aca5868d9fccba4cc0253a4426f9ebfab7d30b4a37a6e2985948244a4",
+      "source_manifest_sha256": "60ba09b82dccdf2743f26f42e73fa3d1559cac4edd1062c730b9c3b0a24d1e0c",
+      "identical_tensor_count": 43
+    }
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 33 Stepping 2, AuthenticAMD",
+    "python": "3.13.14 (main, Aug  5 2026, 16:10:10) [MSC v.1944 64 bit (AMD64)]",
+    "numpy": "2.4.6",
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMBA_NUM_THREADS": "1"
+    },
+    "runtime_source_sha256": {
+      "lib/src/core/failure.hpp": "7edc727f3cc6223016956a98116dd5b4b04ec5e54abed70453ac4b811f38abc2",
+      "lib/src/core/matvec.cpp": "ca2beaf7142310d5b96807853b3fff1643d416dc0c65cc4745095078c6b9b5be",
+      "lib/src/core/matvec.hpp": "89e4ccf972f3c295a00bfbe79edc54a55ea025a186a609fba62f6a3d0d1a178c",
+      "lib/src/core/matvec_avx2.cpp": "6ff7bea1137ba1478f789d1bd945d4fd3b5d414d785b5860b015f7044095d30b",
+      "lib/src/core/neural.cpp": "40234e25b71ea2e8594c56783a587b440ea4339742a93b0415edef25e4828b41",
+      "lib/src/core/numerical.hpp": "24a5dad1ccf13c2a3423531cdc1adc4a2ef716e74639a5954bbb54f532f8aae2",
+      "lib/src/core/observation.cpp": "d9109f589d4d2f26c3d5fab46402a786500bdff77eb1a20971bacefaa1c610e2",
+      "lib/src/core/physical.cpp": "ce7b87af5ad05bf5347d7c4d2431309c730a46276369a883d0d38cad44220e3c",
+      "lib/src/core/planner.cpp": "ea668554d1042e210ca44e282b223e554dea84fd9ab4a763cbc75c02fd02ecfa",
+      "lib/src/core/rng.hpp": "c0b7f5cdd2e47145bb658e3393c1a30e1247132983197607ce193c2035712695",
+      "lib/src/core/segments.cpp": "56959e18b0037f6a8da69589061cd8f00e9600de51a51318c65b1df50ac29cad",
+      "lib/src/models/json.hpp": "ff8549154633ac57af5bddb9149923c443ef1262106c6d69ce5c84ee89112d94",
+      "lib/src/models/loader.cpp": "44a90bb296b4e4c5d9d4a9e2f2b3e245ea3d8e754c6b640b89a172e6a1811877",
+      "lib/src/renderer/renderer_adapter.cpp": "b03f3bf15edf0ff02be105b8616c56a11b275be6dce0b68017213cf656f63a39",
+      "lib/include/abcurves/model.hpp": "47634306ec9914234c194bf99368dde8a4ce81acfbdec95eeddac18cba02f72e",
+      "lib/include/abcurves/native.hpp": "69fa39f035f2d532a069d3153a1839d2e428fe86ff6e7357d618ecdb9e6674ba",
+      "lib/include/abcurves/observation.hpp": "6e416defbb9d8bc9cfea9baed6170e5cf5c38eae3139a6694f8e176260171fe6",
+      "lib/include/abcurves/planner.hpp": "b304d658ee5735f0bcbf46faa8b678166b1d3bb034c65dc8d4df695078b3101b",
+      "lib/include/abcurves/renderer.hpp": "75a963ff3ebeb4b4075344f8464864979da62c84ed9e523a9c77352a859820b8",
+      "lib/include/abcurves/segments.hpp": "e2912d5e4e044bb0ab01ca50ecfdff9f103901645f608b4840c5d30e6fd9d19b",
+      "lib/include/abcurves/types.hpp": "167a5081cfdc98dd862c21fd7cdfb242e042d82e9b3454354e041fa2935cf8d1",
+      "Native/abcurves/_continuous/backend.py": "df541eafadd95338189d5ade8147884894196cb83aba198e0c0d1c90650860a6",
+      "Native/abcurves/_continuous/kernels.py": "c847bbd86b61540cc43b170e3b2df7245efbb36cc18332856edd4eba8fe91ed2",
+      "Native/abcurves/_continuous/native.py": "0f3170f77da63169e52cae3f8eb557ffd1cc8eae15bebdc3d48b1be873cd8483",
+      "Native/abcurves/_continuous/neural_native.py": "07c0773ca8638b859c1e1c38b99a779e4a09f028c5212ee654b79e777a17fca3",
+      "Native/abcurves/_continuous/planner.py": "d1d0fce099fa9422c3cf288492328cfc79f9a6d0ae830ee1c91b510df818f4ae",
+      "Native/abcurves/_continuous/rng.py": "f76e43abd6fe95801572f9ea0f1e9620c14c398db488d186e4c72a3f14bf8923",
+      "Native/abcurves/_continuous/runtime.py": "f1fac335a0c242f8bcf88eff7995fd0266ce25fb19e832cd8a5ea297079f181e",
+      "Native/abcurves/_continuous/__init__.py": "046cd2fecea390486c0d8aac3abc4f0b69b1b36152f807fc73c5d73a1d84ad23",
+      "Native/abcurves/capture_archives.py": "63b17ecc581a74cb1139c5c099c92b213ef0520723adae59001092b72c9bdb63",
+      "Native/abcurves/capture_exports.py": "3297449c3c7894b627e6067dc6bcf507319219ee0257b7d5d9a9b21c39b5a31d",
+      "Native/abcurves/capture_preprocess.py": "26a672030ef1d5952af9d1a79dcd82453adf5058f8bad35dbe85386116dbe39a",
+      "Native/abcurves/continuous.py": "1689cf8efe9ec7eb0ae8cafea8e43d8033875aa596c7f119454f6ca87a3c03f7",
+      "Native/abcurves/continuous_model.py": "2a03a290b9c3ba1a7825f851dca91d8db26b0ed69901f2d4570d5e250ab65c7b",
+      "Native/abcurves/continuous_pipeline.py": "91892c42c68dbdfb957d7f43e29ff8956c1d4caf8bd20ead935b507612580386",
+      "Native/abcurves/data.py": "aed615e8526fc7abedee6c80476963f88479f8976f61418bd14b1ccd4f357259",
+      "Native/abcurves/fast_planner.py": "ea565240d82d824cadb274617d79ba5408f4bf9bb157fc97765cf655e8b7dd1e",
+      "Native/abcurves/fast_summary.py": "ff7065ad9ac045cb709697a4a51e11bd607eb994e844de78cc2991f546a55886",
+      "Native/abcurves/features.py": "87f8fb6e25e5b0eeefbc36c19eb62906037318b5c34cc580587a5e382ec6496d",
+      "Native/abcurves/global_data.py": "7c387c90ede46fddf651a1e48e2fb238576080c372cf67bab1687694d1b44a99",
+      "Native/abcurves/judges.py": "015413111560212fc366ca7eda9210d695b3e39aa4b602f07c87044b6b619202",
+      "Native/abcurves/model_store.py": "3120450b8454afbc0db9156c372c58a0028cb16d9434b7b9dc7969b2077d1271",
+      "Native/abcurves/pipeline.py": "98e0f69effc679424643b5404cdd7033fddcb52c4ab3811efc9451fbb738fa76",
+      "Native/abcurves/planner.py": "0c4a4013238c7c359ed9b82d3af506c9b9bc684ab7fac61c1c5dd1dda731a16f",
+      "Native/abcurves/portable_renderer.py": "904f87d40d8edf6e99c2d8b7a9e4a17161c4d1ec44e83cb9aca0098b73de0fe7",
+      "Native/abcurves/prefix_representation.py": "0e94b85d7ecca080d6ab9936f9ab0fd2cd129d7aaa7a0afaf4d3700274ca2c1b",
+      "Native/abcurves/preprocessing.py": "b88cfee74ec325ecbf25dbd21b5640a2cf788db48d37fed042c7c51a123e48ac",
+      "Native/abcurves/prodmp.py": "983e5a83c05198439509cfdc934f706f4bd2107b6d48162fb7b9f06dae8679d9",
+      "Native/abcurves/renderer.py": "d3fc1b8f43e4c4cb7115df6100cd44822a05fec73b599d7edaa2bfafa445bfa3",
+      "Native/abcurves/seam.py": "47ee96b8d8175ed2f3f9f50ac5841eeac28dc4b30e8085f370d1b93122d86d40",
+      "Native/abcurves/smoothing.py": "905a189651970075241c6c65cdab839c9b3ec6401aca169bbe5e673bb87c454c",
+      "Native/abcurves/texture.py": "298dee37c5210eb7c9aa2a99b4f81bc6ca0202f43a747ec5e8d36d6e54d22830",
+      "Native/abcurves/__init__.py": "932395ec55336645026f47049ac12f6bf2d0417b51ab64e16b470d397a7c78fa",
+      "Native/abcurves/_native/abcurves_renderer.dll": "2f3b9c360def7817fd621658845831c96559f64da47b044d4ad5a0319bdc3719",
+      "Native/abcurves/_native/__init__.py": "607b6573d3dba43711f1068dba3e618cb3821c25c83f9e733a85d75d33a8081c"
+    },
+    "native_executable_sha256": "ad2febedfc0824363410aabaa2269f35f82a89107b81e755c1c98bbb5176058f",
+    "replay_sha256": "dca5daacb282377844b429b46b2bc981b024ad6ed017e45d03e1fd64004dfa8a",
+    "assets": {
+      "lib/models/16ms/manifest.json": {
+        "bytes": 9619,
+        "sha256": "5b7326e9b946443bd7886d3a16703084e4af9eb516f9e18505aff0b61e838075",
+        "role": "native planner runtime"
+      },
+      "lib/models/16ms/model.abcmodel": {
+        "bytes": 828085,
+        "sha256": "096be81c3a464f3fffe6f3270d091d88d237f8f39b886cbfd972ea38918850ca",
+        "role": "native planner runtime"
+      },
+      "lib/models/32ms/manifest.json": {
+        "bytes": 9616,
+        "sha256": "889373a24545a743c8b4a27fd4da913217d2c5064134c806f34a3cb1f23d54b1",
+        "role": "native planner runtime"
+      },
+      "lib/models/32ms/model.abcmodel": {
+        "bytes": 828085,
+        "sha256": "cc38312f2df704fe132068abd930dd6be8c3ea3755fe75ba62d3d3d322ece3f5",
+        "role": "native planner runtime"
+      },
+      "lib/models/8ms/manifest.json": {
+        "bytes": 9615,
+        "sha256": "28359e67e8db97e70f84a5e54dd7ed5b7fbf4a78214e016b734bd04de84b3118",
+        "role": "native planner runtime"
+      },
+      "lib/models/8ms/model.abcmodel": {
+        "bytes": 828085,
+        "sha256": "4bb97f154ddf53bec1963ad0d9e9653f561c7f61f5dc1fb50c5dd9dc3ec0dad2",
+        "role": "native planner runtime"
+      },
+      "Native/models/continuous/brake.onnx": {
+        "bytes": 127338,
+        "sha256": "ec511415341b72284498ae0333cb12da6bf26e1f9c06562bc468766bfa636c24",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/choice.onnx": {
+        "bytes": 44933,
+        "sha256": "805f517a27219bc20fd0418be02cbf5316a601f040533056fe61304ef5e2ac74",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/choice_split.onnx": {
+        "bytes": 43193,
+        "sha256": "7a8d36ab01e719423854051a6b1a4f35536e5688e2eaf3e9e154f32e5e174bf1",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/events.onnx": {
+        "bytes": 145497,
+        "sha256": "cd839db370bf0804550cc42e63667736ddd2c2f8fa05cd46453c7254c28dabe3",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/events.pt": {
+        "bytes": 145765,
+        "sha256": "371d19e08d80d720ad5f83e1052096076ae03e79fbd1b98c3389c5b16bb04d4a",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/hazard.onnx": {
+        "bytes": 17844,
+        "sha256": "ebd385e53ca15bb5ec5609018bdd93f2213875a41b3c78912986b00dfda12e53",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/manifest.json": {
+        "bytes": 11951,
+        "sha256": "130ed3560c21223a42b8770d1de69a6178ae7e047ee6a32679fa3bad2f399ee5",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/motor.onnx": {
+        "bytes": 552418,
+        "sha256": "116126ef8a6dc7aae027de596158d51e44a06fa30dcfd7058dfcde463106542c",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/motor.pt": {
+        "bytes": 650104,
+        "sha256": "52db2d89495d8ebe76c3d09162a99e32132d6d2e73ed76ce6605cd956c6dc86f",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/selector.pt": {
+        "bytes": 44373,
+        "sha256": "8675c549da677f096b3e40fcf9125a9aedf15ab57e6da94e0bcb055101bdeb1d",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous/weights.npz": {
+        "bytes": 838096,
+        "sha256": "018a096c66213c62b429caf4a8ae6f0470f6e283248a24f476f0fed3e36ea881",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-16/brake.onnx": {
+        "bytes": 127338,
+        "sha256": "9fdd929374d6fa973ba1f1146d32bcc131b3fce32210c8aa4be56b05f79efaaa",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-16/choice.onnx": {
+        "bytes": 44933,
+        "sha256": "98311afded5c560070d058c4a1aec079dc4728989d6cf6d62ddf6ddb0caaa400",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-16/choice_split.onnx": {
+        "bytes": 43193,
+        "sha256": "bd74a0aa9c3725e8fa6d4ab7db4a1047970fc3fddf25a50554ee28c90e2504a0",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-16/events.onnx": {
+        "bytes": 145497,
+        "sha256": "ac3277b48aa1bbe6cdae315f935d429666f4505f366503a5d4827b40e0049193",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-16/hazard.onnx": {
+        "bytes": 17844,
+        "sha256": "02783f79dada3bf3cb962006f0b7c6459b11707efc83766f0fc12feead059b97",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-16/manifest.json": {
+        "bytes": 9060,
+        "sha256": "fd4dbe1b4e933d81efba3958f1519c87c590926d8ea591c0d2ff469db3a824c0",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-16/motor.onnx": {
+        "bytes": 552418,
+        "sha256": "acb975aa159d93e7afdd968aafab8fbba5437a732b5ccdaa4e6e13558da5fba6",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-16/weights.npz": {
+        "bytes": 838096,
+        "sha256": "5e435f4cf89ecf76504bd7b578c262fd1b6034bdcb8fff5f57810565dcab7266",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-8/brake.onnx": {
+        "bytes": 127338,
+        "sha256": "1eb218e0dfafe648561a7b6edb6744306843c68ca2261799260ac537d2529f06",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-8/choice.onnx": {
+        "bytes": 44933,
+        "sha256": "679b5a5b6d7582498640fb190de2be8339a7da16f20758d225c75b542e5b7ed8",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-8/choice_split.onnx": {
+        "bytes": 43193,
+        "sha256": "b59873261f7999667fcade4efcf70f9269d98eec38b8d9a97bbbcd199ff0505f",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-8/events.onnx": {
+        "bytes": 145497,
+        "sha256": "1d56d218e4b1f437078dd8e6cf0efb821f019a80a096e68a3391eb811345953b",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-8/hazard.onnx": {
+        "bytes": 17844,
+        "sha256": "ea48bb4ddbcfc25fa0360109ce842bfc446b213954d202f2fd3910cf8c376ef1",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-8/manifest.json": {
+        "bytes": 9059,
+        "sha256": "60ba09b82dccdf2743f26f42e73fa3d1559cac4edd1062c730b9c3b0a24d1e0c",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-8/motor.onnx": {
+        "bytes": 552418,
+        "sha256": "f852175a390c042b45d74aa7357cb20b5c0aa742aab518cc271afeb99e7563ec",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/continuous-8/weights.npz": {
+        "bytes": 838096,
+        "sha256": "ec5e064aca5868d9fccba4cc0253a4426f9ebfab7d30b4a37a6e2985948244a4",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/manifest.json": {
+        "bytes": 5795,
+        "sha256": "3d0542acd04b54c3bddc017098e0c419adcb93f91774ccdead18915cdab02898",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/planner_seed23.pt": {
+        "bytes": 1500389,
+        "sha256": "d691ba155c4fa9b403c5a3e2ed9c44123fe00d3d1bee15c55ee9226f4531a23e",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/planner_seed7.pt": {
+        "bytes": 1500345,
+        "sha256": "d82c93071224f7eb225d1f2bcf46d52669a7270db414431d7622e032439b280d",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/renderer_adapter.bin": {
+        "bytes": 4972,
+        "sha256": "2a90e36c1b4c4b34b505ab73fcbfc6dfe7129e5cec209bd14e4447074b49ea13",
+        "role": "upstream reference/export asset"
+      },
+      "Native/models/renderer_global_h80.bin": {
+        "bytes": 44484,
+        "sha256": "405c34bceb55485dfd6bd3c0368bce079feea680a64c6b261904ef5b4713e240",
+        "role": "optional Renderer runtime"
+      },
+      "Native/models/renderer_global_h80_float.pt": {
+        "bytes": 144457,
+        "sha256": "dd10ebe7d08011d7dbd91736e54a84faec4844f69a911a9dfd57eb83cd8b5e5c",
+        "role": "upstream reference/export asset"
+      }
+    },
+    "recorded_utc": "2026-11-10T15:17:25.902502+00:00",
+    "packages": {
+      "numpy": "2.4.6",
+      "numba": "0.66.0",
+      "llvmlite": "0.48.0",
+      "scipy": "1.17.1"
+    },
+    "machine": {
+      "cpu": "AMD Ryzen 7 5700X3D 8-Core Processor",
+      "logical_processors": 16,
+      "compiler": {
+        "CMAKE_CXX_COMPILER_ID": "MSVC",
+        "CMAKE_CXX_COMPILER_VERSION": "19.50.35728.0",
+        "CMAKE_CXX_COMPILER_ARCHITECTURE_ID": "x64"
+      },
+      "cmake": "cmake version 4.3.0-rc2",
+      "build": "Release, /O2 /fp:strict, ABC_PROFILE=OFF; AVX2 dispatched; no FMA contraction",
+      "isolation": "Thread pools set to 1; no affinity, clock/frequency, power-plan or OS scheduling isolation."
+    },
+    "context_note": "CPU/compiler/package context and additional reference wrapper hashes supplemented after this campaign; same unchanged sources, machine, build and environment."
+  },
+  "tool_sha256": {
+    "tools/reference_comparison/CMakeLists.txt": "61df5734aba7235177e0415ae8a7685f18fcbd48a1842a0f16d02b6f41a7c908",
+    "tools/reference_comparison/compare.py": "4332cc93e6cdb2f7c4fde2ee3a543bac41325767fe95e3ee464354d47fbce1e4",
+    "tools/reference_comparison/extended.py": "10394de7ce0afb3a27e7c44aaef1a29fb37cb170558d8ae6d61021bad3573cad",
+    "tools/reference_comparison/native.cpp": "22d240f5f2a2667a79981bb1088432989e7812c442f6d0d17edc9653844efd2f",
+    "tools/reference_comparison/report.py": "fd1870369bd50d6eb9a92dcea866c60bdce18dc7ccdedcfa8ea527c441f8ab53",
+    "tools/reference_comparison/verify_docs.py": "fcd3594bb7e24ac1c3fad03819e9befd816cc0f9b28589d67a0df48421515810"
+  },
+  "raw_results": "build/reference-comparison-final/ (generated locally; not shipped)"
+}

@@ -1,0 +1,12 @@
+[package]
+name = "abcurves-sys"
+version = "1.5.0"
+edition = "2021"
+links = "abcurves"
+build = "build.rs"
+license = "MIT"
+
+[features]
+default = ["dynamic"]
+dynamic = []
+linked = []

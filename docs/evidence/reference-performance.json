@@ -1,0 +1,1220 @@
+{
+  "schema": 1,
+  "comparison": "Local original Python Numba/BLAS vs direct native C++20; same variant weights.",
+  "runs": 5,
+  "warmup_per_operation": 32,
+  "units": "microseconds",
+  "alternating_order": true,
+  "variants": {
+    "32": {
+      "model_load": {
+        "python": {
+          "count": 100,
+          "median": 7016.8,
+          "mean": 7099.442000000001,
+          "p95": 7951.7300000000005,
+          "p99": 8252.316000000004,
+          "maximum": 8976.6
+        },
+        "cpp": {
+          "count": 100,
+          "median": 7727.75,
+          "mean": 7792.228,
+          "p95": 8245.085,
+          "p99": 8522.754000000003,
+          "maximum": 9003.3
+        },
+        "speedup": 0.9080003882113163
+      },
+      "initialize_loaded": {
+        "python": {
+          "count": 1000,
+          "median": 918.05,
+          "mean": 950.2278999999999,
+          "p95": 1127.215,
+          "p99": 1344.359,
+          "maximum": 1882.2
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 18.6,
+          "mean": 29.1851,
+          "p95": 63.80499999999999,
+          "p99": 87.1159999999999,
+          "maximum": 250.3
+        },
+        "speedup": 49.357526881720425
+      },
+      "reset_session": {
+        "python": {
+          "count": 5000,
+          "median": 385.6,
+          "mean": 391.97565999999995,
+          "p95": 435.81000000000006,
+          "p99": 543.9140000000003,
+          "maximum": 988.3
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 3.9,
+          "mean": 4.1913599999999995,
+          "p95": 3.9,
+          "p99": 5.101000000000021,
+          "maximum": 342.7
+        },
+        "speedup": 98.87179487179488
+      },
+      "target_update": {
+        "python": {
+          "count": 5000,
+          "median": 4.325,
+          "mean": 4.60453,
+          "p95": 5.994687500000004,
+          "p99": 8.700437500000008,
+          "maximum": 28.06875
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.03125,
+          "mean": 0.05577875,
+          "p95": 0.0375,
+          "p99": 0.9757500000000163,
+          "maximum": 8.95
+        },
+        "speedup": 138.4
+      },
+      "fresh_decision": {
+        "python": {
+          "count": 2000,
+          "median": 592.9,
+          "mean": 604.2563,
+          "p95": 684.925,
+          "p99": 792.923,
+          "maximum": 1372.0
+        },
+        "cpp": {
+          "count": 2000,
+          "median": 230.2,
+          "mean": 235.91065,
+          "p95": 265.825,
+          "p99": 319.85499999999996,
+          "maximum": 546.5
+        },
+        "speedup": 2.5755864465682015
+      },
+      "complete_commitment": {
+        "python": {
+          "count": 2000,
+          "median": 665.6,
+          "mean": 680.3154499999999,
+          "p95": 783.9499999999999,
+          "p99": 910.4369999999999,
+          "maximum": 1714.4
+        },
+        "cpp": {
+          "count": 2000,
+          "median": 230.6,
+          "mean": 236.90755,
+          "p95": 263.205,
+          "p99": 330.006,
+          "maximum": 481.2
+        },
+        "speedup": 2.8863833477883785
+      },
+      "buffered_sample": {
+        "python": {
+          "count": 6000,
+          "median": 6.875,
+          "mean": 7.549241666666666,
+          "p95": 10.151250000000005,
+          "p99": 16.575,
+          "maximum": 50.625
+        },
+        "cpp": {
+          "count": 6000,
+          "median": 0.025,
+          "mean": 0.020187499999999997,
+          "p95": 0.025,
+          "p99": 0.025,
+          "maximum": 1.8
+        },
+        "speedup": 275.0
+      },
+      "motor_features": {
+        "python": {
+          "count": 5000,
+          "median": 6.9,
+          "mean": 7.291,
+          "p95": 8.6,
+          "p99": 14.904000000000087,
+          "maximum": 169.9
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 4.0,
+          "mean": 4.13032,
+          "p95": 4.105000000000018,
+          "p99": 6.2,
+          "maximum": 16.6
+        },
+        "speedup": 1.725
+      },
+      "event_features": {
+        "python": {
+          "count": 5000,
+          "median": 5.0,
+          "mean": 5.255660000000001,
+          "p95": 5.2,
+          "p99": 7.1030000000000655,
+          "maximum": 119.4
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 3.5,
+          "mean": 3.6068399999999996,
+          "p95": 3.8,
+          "p99": 6.3,
+          "maximum": 16.4
+        },
+        "speedup": 1.4285714285714286
+      },
+      "motor_inference": {
+        "python": {
+          "count": 2500,
+          "median": 217.0,
+          "mean": 220.74632000000003,
+          "p95": 254.1199999999999,
+          "p99": 321.53199999999924,
+          "maximum": 477.3
+        },
+        "cpp": {
+          "count": 2500,
+          "median": 203.8,
+          "mean": 205.11931999999996,
+          "p95": 216.70999999999992,
+          "p99": 260.5,
+          "maximum": 436.5
+        },
+        "speedup": 1.0647693817468105
+      },
+      "selector_geometry_network": {
+        "python": {
+          "count": 5000,
+          "median": 29.1,
+          "mean": 31.568,
+          "p95": 44.1,
+          "p99": 74.10200000000003,
+          "maximum": 265.5
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 13.6,
+          "mean": 13.833999999999998,
+          "p95": 15.0,
+          "p99": 19.601000000000024,
+          "maximum": 56.6
+        },
+        "speedup": 2.139705882352941
+      },
+      "hazard_inference": {
+        "python": {
+          "count": 5000,
+          "median": 2.4,
+          "mean": 2.6679999999999997,
+          "p95": 2.5,
+          "p99": 4.4,
+          "maximum": 211.9
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.7,
+          "mean": 0.66526,
+          "p95": 0.7,
+          "p99": 1.1,
+          "maximum": 13.1
+        },
+        "speedup": 3.428571428571429
+      },
+      "brake_inference": {
+        "python": {
+          "count": 5000,
+          "median": 4.9,
+          "mean": 5.44514,
+          "p95": 6.9,
+          "p99": 11.101000000000022,
+          "maximum": 221.7
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 2.4,
+          "mean": 2.4154199999999997,
+          "p95": 2.5,
+          "p99": 3.701000000000022,
+          "maximum": 21.8
+        },
+        "speedup": 2.041666666666667
+      },
+      "decode_selected": {
+        "python": {
+          "count": 5000,
+          "median": 5.51875,
+          "mean": 5.89249,
+          "p95": 7.5,
+          "p99": 12.969937500000025,
+          "maximum": 25.01875
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.45,
+          "mean": 0.46095250000000004,
+          "p95": 0.46875,
+          "p99": 0.6875,
+          "maximum": 2.09375
+        },
+        "speedup": 12.263888888888888
+      },
+      "brake_path": {
+        "python": {
+          "count": 5000,
+          "median": 3.6,
+          "mean": 3.8868,
+          "p95": 4.5,
+          "p99": 7.701000000000022,
+          "maximum": 169.9
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.6,
+          "mean": 0.5906799999999999,
+          "p95": 0.6,
+          "p99": 0.7,
+          "maximum": 4.3
+        },
+        "speedup": 6.0
+      },
+      "prepare_history": {
+        "python": {
+          "count": 5000,
+          "median": 30.446875,
+          "mean": 31.262533750000003,
+          "p95": 36.725625,
+          "p99": 46.3813125,
+          "maximum": 93.40625
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 1.35625,
+          "mean": 1.38039125,
+          "p95": 1.5375,
+          "p99": 1.912625000000003,
+          "maximum": 11.28125
+        },
+        "speedup": 22.44930875576037
+      },
+      "renderer_load": {
+        "python": {
+          "count": 100,
+          "median": 1374.25,
+          "mean": 1411.7720000000002,
+          "p95": 1624.83,
+          "p99": 1844.4610000000014,
+          "maximum": 2127.7
+        },
+        "cpp": {
+          "count": 100,
+          "median": 418.70000000000005,
+          "mean": 420.78,
+          "p95": 432.735,
+          "p99": 447.2330000000001,
+          "maximum": 460.4
+        },
+        "speedup": 3.282182947217578
+      },
+      "renderer_profile": {
+        "python": {
+          "count": 1000,
+          "median": 3321.5,
+          "mean": 3365.3381999999997,
+          "p95": 3652.6749999999997,
+          "p99": 3909.83,
+          "maximum": 4240.9
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 2790.25,
+          "mean": 2833.6966,
+          "p95": 3112.6349999999998,
+          "p99": 3409.809,
+          "maximum": 3831.9
+        },
+        "speedup": 1.1903951258847774
+      },
+      "renderer_begin": {
+        "python": {
+          "count": 1000,
+          "median": 2.6,
+          "mean": 2.6952,
+          "p95": 2.9,
+          "p99": 5.4,
+          "maximum": 10.3
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 0.1,
+          "mean": 0.0566,
+          "p95": 0.1,
+          "p99": 0.2,
+          "maximum": 0.4
+        },
+        "speedup": 26.0
+      },
+      "renderer_step": {
+        "python": {
+          "count": 6000,
+          "median": 21.4,
+          "mean": 22.757800000000003,
+          "p95": 26.8,
+          "p99": 38.502000000000045,
+          "maximum": 518.0
+        },
+        "cpp": {
+          "count": 6000,
+          "median": 16.8,
+          "mean": 17.530416666666667,
+          "p95": 21.1,
+          "p99": 28.9,
+          "maximum": 250.3
+        },
+        "speedup": 1.2738095238095237
+      }
+    },
+    "16": {
+      "model_load": {
+        "python": {
+          "count": 100,
+          "median": 6943.6,
+          "mean": 7045.123999999999,
+          "p95": 7527.82,
+          "p99": 8361.449999999999,
+          "maximum": 8425.8
+        },
+        "cpp": {
+          "count": 100,
+          "median": 7731.25,
+          "mean": 7812.721,
+          "p95": 8312.494999999999,
+          "p99": 8717.675000000003,
+          "maximum": 9180.5
+        },
+        "speedup": 0.8981212611156023
+      },
+      "initialize_loaded": {
+        "python": {
+          "count": 1000,
+          "median": 916.1,
+          "mean": 941.8773999999999,
+          "p95": 1107.91,
+          "p99": 1299.9399999999998,
+          "maximum": 1828.1
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 18.6,
+          "mean": 26.4483,
+          "p95": 52.4,
+          "p99": 59.43199999999997,
+          "maximum": 81.3
+        },
+        "speedup": 49.25268817204301
+      },
+      "reset_session": {
+        "python": {
+          "count": 5000,
+          "median": 386.2,
+          "mean": 400.2263,
+          "p95": 494.71500000000003,
+          "p99": 637.5130000000003,
+          "maximum": 1131.3
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 3.9,
+          "mean": 3.9564199999999996,
+          "p95": 4.1,
+          "p99": 5.0,
+          "maximum": 31.3
+        },
+        "speedup": 99.02564102564102
+      },
+      "target_update": {
+        "python": {
+          "count": 5000,
+          "median": 4.3,
+          "mean": 4.513657500000001,
+          "p95": 5.4875,
+          "p99": 7.5939375000000044,
+          "maximum": 18.3875
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.03125,
+          "mean": 0.0535125,
+          "p95": 0.05,
+          "p99": 0.7073125000000232,
+          "maximum": 11.49375
+        },
+        "speedup": 137.6
+      },
+      "fresh_decision": {
+        "python": {
+          "count": 2000,
+          "median": 579.55,
+          "mean": 594.2424,
+          "p95": 690.145,
+          "p99": 847.8059999999999,
+          "maximum": 1143.5
+        },
+        "cpp": {
+          "count": 2000,
+          "median": 229.55,
+          "mean": 238.26785,
+          "p95": 276.31,
+          "p99": 360.601,
+          "maximum": 567.8
+        },
+        "speedup": 2.5247222827270743
+      },
+      "complete_commitment": {
+        "python": {
+          "count": 2000,
+          "median": 615.6500000000001,
+          "mean": 629.10575,
+          "p95": 719.205,
+          "p99": 834.3659999999999,
+          "maximum": 1191.9
+        },
+        "cpp": {
+          "count": 2000,
+          "median": 230.1,
+          "mean": 237.05960000000002,
+          "p95": 268.405,
+          "p99": 306.202,
+          "maximum": 512.3
+        },
+        "speedup": 2.6755758365927864
+      },
+      "buffered_sample": {
+        "python": {
+          "count": 6000,
+          "median": 7.075,
+          "mean": 7.89555,
+          "p95": 10.8,
+          "p99": 15.526500000000032,
+          "maximum": 39.175
+        },
+        "cpp": {
+          "count": 6000,
+          "median": 0.025,
+          "mean": 0.019375,
+          "p95": 0.025,
+          "p99": 0.025,
+          "maximum": 2.45
+        },
+        "speedup": 283.0
+      },
+      "motor_features": {
+        "python": {
+          "count": 5000,
+          "median": 6.9,
+          "mean": 7.14584,
+          "p95": 7.3,
+          "p99": 14.402000000000044,
+          "maximum": 68.7
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 4.0,
+          "mean": 4.16232,
+          "p95": 5.0,
+          "p99": 6.1,
+          "maximum": 40.4
+        },
+        "speedup": 1.725
+      },
+      "event_features": {
+        "python": {
+          "count": 5000,
+          "median": 5.0,
+          "mean": 8.5708,
+          "p95": 5.305000000000018,
+          "p99": 9.301000000000023,
+          "maximum": 16621.6
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 3.5,
+          "mean": 3.8997599999999997,
+          "p95": 5.8,
+          "p99": 6.5,
+          "maximum": 187.5
+        },
+        "speedup": 1.4285714285714286
+      },
+      "motor_inference": {
+        "python": {
+          "count": 2500,
+          "median": 215.6,
+          "mean": 215.14264,
+          "p95": 243.00499999999997,
+          "p99": 262.6,
+          "maximum": 301.8
+        },
+        "cpp": {
+          "count": 2500,
+          "median": 205.8,
+          "mean": 210.67012000000003,
+          "p95": 236.4199999999999,
+          "p99": 306.10299999999995,
+          "maximum": 469.4
+        },
+        "speedup": 1.0476190476190474
+      },
+      "selector_geometry_network": {
+        "python": {
+          "count": 5000,
+          "median": 29.0,
+          "mean": 31.875680000000006,
+          "p95": 49.2,
+          "p99": 63.6,
+          "maximum": 263.5
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 13.5,
+          "mean": 14.278659999999997,
+          "p95": 13.8,
+          "p99": 27.903000000000063,
+          "maximum": 257.5
+        },
+        "speedup": 2.1481481481481484
+      },
+      "hazard_inference": {
+        "python": {
+          "count": 5000,
+          "median": 2.4,
+          "mean": 2.56948,
+          "p95": 3.1100000000000363,
+          "p99": 4.9,
+          "maximum": 43.2
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.7,
+          "mean": 0.7292599999999999,
+          "p95": 0.8,
+          "p99": 1.101000000000022,
+          "maximum": 231.6
+        },
+        "speedup": 3.428571428571429
+      },
+      "brake_inference": {
+        "python": {
+          "count": 5000,
+          "median": 4.8,
+          "mean": 5.04362,
+          "p95": 6.805000000000018,
+          "p99": 9.2,
+          "maximum": 50.7
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 2.4,
+          "mean": 2.4919,
+          "p95": 2.6,
+          "p99": 3.9,
+          "maximum": 63.6
+        },
+        "speedup": 2.0
+      },
+      "decode_selected": {
+        "python": {
+          "count": 5000,
+          "median": 5.14375,
+          "mean": 5.49779375,
+          "p95": 7.456562500000001,
+          "p99": 9.719250000000011,
+          "maximum": 25.15625
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.225,
+          "mean": 0.23789000000000002,
+          "p95": 0.2375,
+          "p99": 0.43756250000000135,
+          "maximum": 8.6625
+        },
+        "speedup": 22.86111111111111
+      },
+      "brake_path": {
+        "python": {
+          "count": 5000,
+          "median": 3.6,
+          "mean": 3.7774199999999998,
+          "p95": 4.3,
+          "p99": 7.6,
+          "maximum": 64.5
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.3,
+          "mean": 0.31932,
+          "p95": 0.4,
+          "p99": 0.4,
+          "maximum": 0.7
+        },
+        "speedup": 12.0
+      },
+      "prepare_history": {
+        "python": {
+          "count": 5000,
+          "median": 30.425,
+          "mean": 31.2545625,
+          "p95": 37.04468750000001,
+          "p99": 45.42025000000004,
+          "maximum": 75.91875
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 1.35625,
+          "mean": 1.4214499999999999,
+          "p95": 1.7,
+          "p99": 2.475,
+          "maximum": 18.56875
+        },
+        "speedup": 22.433179723502306
+      },
+      "renderer_load": {
+        "python": {
+          "count": 100,
+          "median": 1377.25,
+          "mean": 1399.718,
+          "p95": 1529.37,
+          "p99": 1590.3080000000002,
+          "maximum": 1620.8
+        },
+        "cpp": {
+          "count": 100,
+          "median": 422.0,
+          "mean": 435.983,
+          "p95": 488.10999999999996,
+          "p99": 693.6290000000018,
+          "maximum": 1043.0
+        },
+        "speedup": 3.2636255924170614
+      },
+      "renderer_profile": {
+        "python": {
+          "count": 1000,
+          "median": 3351.95,
+          "mean": 3393.6472999999996,
+          "p95": 3647.46,
+          "p99": 3830.174,
+          "maximum": 4540.2
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 2796.95,
+          "mean": 2857.3803,
+          "p95": 3201.25,
+          "p99": 3683.421,
+          "maximum": 3993.4
+        },
+        "speedup": 1.1984304331503959
+      },
+      "renderer_begin": {
+        "python": {
+          "count": 1000,
+          "median": 2.6,
+          "mean": 2.7730000000000006,
+          "p95": 3.1,
+          "p99": 5.7,
+          "maximum": 21.2
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 0.1,
+          "mean": 0.058,
+          "p95": 0.1,
+          "p99": 0.2,
+          "maximum": 0.7
+        },
+        "speedup": 26.0
+      },
+      "renderer_step": {
+        "python": {
+          "count": 6000,
+          "median": 21.3,
+          "mean": 22.55141666666667,
+          "p95": 30.2,
+          "p99": 35.801000000000016,
+          "maximum": 263.9
+        },
+        "cpp": {
+          "count": 6000,
+          "median": 16.8,
+          "mean": 16.994383333333335,
+          "p95": 18.1,
+          "p99": 22.9,
+          "maximum": 47.7
+        },
+        "speedup": 1.2678571428571428
+      }
+    },
+    "8": {
+      "model_load": {
+        "python": {
+          "count": 100,
+          "median": 6908.700000000001,
+          "mean": 7008.472,
+          "p95": 7501.039999999999,
+          "p99": 7833.660000000001,
+          "maximum": 7889.1
+        },
+        "cpp": {
+          "count": 100,
+          "median": 7658.85,
+          "mean": 7706.651999999999,
+          "p95": 8062.97,
+          "p99": 8216.04,
+          "maximum": 8279.4
+        },
+        "speedup": 0.9020544859867996
+      },
+      "initialize_loaded": {
+        "python": {
+          "count": 1000,
+          "median": 916.05,
+          "mean": 946.813,
+          "p95": 1126.51,
+          "p99": 1270.3,
+          "maximum": 1581.3
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 18.2,
+          "mean": 26.004900000000003,
+          "p95": 50.904999999999994,
+          "p99": 62.40699999999999,
+          "maximum": 79.4
+        },
+        "speedup": 50.332417582417584
+      },
+      "reset_session": {
+        "python": {
+          "count": 5000,
+          "median": 383.6,
+          "mean": 396.03914,
+          "p95": 484.81500000000005,
+          "p99": 562.903,
+          "maximum": 936.3
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 3.9,
+          "mean": 3.930779999999999,
+          "p95": 4.0,
+          "p99": 5.0,
+          "maximum": 41.2
+        },
+        "speedup": 98.35897435897436
+      },
+      "target_update": {
+        "python": {
+          "count": 5000,
+          "median": 4.3125,
+          "mean": 4.56384375,
+          "p95": 5.862812500000001,
+          "p99": 8.0625,
+          "maximum": 18.6625
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.03125,
+          "mean": 0.04883874999999999,
+          "p95": 0.0375,
+          "p99": 0.7755625000000123,
+          "maximum": 2.05625
+        },
+        "speedup": 138.0
+      },
+      "fresh_decision": {
+        "python": {
+          "count": 2000,
+          "median": 565.3,
+          "mean": 571.2951999999999,
+          "p95": 632.615,
+          "p99": 706.3199999999999,
+          "maximum": 906.6
+        },
+        "cpp": {
+          "count": 2000,
+          "median": 229.1,
+          "mean": 235.59184999999997,
+          "p95": 263.62,
+          "p99": 317.4309999999999,
+          "maximum": 476.6
+        },
+        "speedup": 2.4674814491488433
+      },
+      "complete_commitment": {
+        "python": {
+          "count": 2000,
+          "median": 582.7,
+          "mean": 592.7510500000001,
+          "p95": 669.115,
+          "p99": 783.9169999999999,
+          "maximum": 1433.0
+        },
+        "cpp": {
+          "count": 2000,
+          "median": 228.9,
+          "mean": 238.30929999999998,
+          "p95": 285.11,
+          "p99": 398.9339999999999,
+          "maximum": 674.0
+        },
+        "speedup": 2.545653123634775
+      },
+      "buffered_sample": {
+        "python": {
+          "count": 6000,
+          "median": 8.625,
+          "mean": 9.127116666666666,
+          "p95": 12.526250000000005,
+          "p99": 16.05,
+          "maximum": 114.35
+        },
+        "cpp": {
+          "count": 6000,
+          "median": 0.025,
+          "mean": 0.020325,
+          "p95": 0.025,
+          "p99": 0.025,
+          "maximum": 2.4
+        },
+        "speedup": 345.0
+      },
+      "motor_features": {
+        "python": {
+          "count": 5000,
+          "median": 6.9,
+          "mean": 7.1034,
+          "p95": 7.205000000000019,
+          "p99": 12.401000000000023,
+          "maximum": 53.9
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 4.0,
+          "mean": 4.18098,
+          "p95": 4.2,
+          "p99": 6.2,
+          "maximum": 36.2
+        },
+        "speedup": 1.725
+      },
+      "event_features": {
+        "python": {
+          "count": 5000,
+          "median": 5.0,
+          "mean": 5.274780000000001,
+          "p95": 5.3,
+          "p99": 9.1,
+          "maximum": 124.4
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 3.5,
+          "mean": 3.5811399999999995,
+          "p95": 3.8,
+          "p99": 6.5,
+          "maximum": 38.3
+        },
+        "speedup": 1.4285714285714286
+      },
+      "motor_inference": {
+        "python": {
+          "count": 2500,
+          "median": 204.8,
+          "mean": 211.51167999999998,
+          "p95": 232.51499999999993,
+          "p99": 283.801,
+          "maximum": 438.2
+        },
+        "cpp": {
+          "count": 2500,
+          "median": 199.0,
+          "mean": 205.76668,
+          "p95": 234.0199999999999,
+          "p99": 303.5219999999995,
+          "maximum": 475.2
+        },
+        "speedup": 1.0291457286432162
+      },
+      "selector_geometry_network": {
+        "python": {
+          "count": 5000,
+          "median": 29.0,
+          "mean": 31.0705,
+          "p95": 45.01000000000003,
+          "p99": 62.50600000000013,
+          "maximum": 240.1
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 13.6,
+          "mean": 14.175559999999997,
+          "p95": 13.8,
+          "p99": 25.101000000000024,
+          "maximum": 260.0
+        },
+        "speedup": 2.1323529411764706
+      },
+      "hazard_inference": {
+        "python": {
+          "count": 5000,
+          "median": 2.4,
+          "mean": 2.50406,
+          "p95": 2.5,
+          "p99": 4.4,
+          "maximum": 30.9
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.7,
+          "mean": 0.68134,
+          "p95": 0.8,
+          "p99": 1.0010000000000219,
+          "maximum": 26.0
+        },
+        "speedup": 3.428571428571429
+      },
+      "brake_inference": {
+        "python": {
+          "count": 5000,
+          "median": 4.9,
+          "mean": 5.107099999999999,
+          "p95": 5.1,
+          "p99": 9.301000000000023,
+          "maximum": 72.3
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 2.4,
+          "mean": 2.46496,
+          "p95": 2.6,
+          "p99": 3.0,
+          "maximum": 102.7
+        },
+        "speedup": 2.041666666666667
+      },
+      "decode_selected": {
+        "python": {
+          "count": 5000,
+          "median": 4.9625,
+          "mean": 5.26316375,
+          "p95": 6.9265625000000055,
+          "p99": 9.206812500000012,
+          "maximum": 23.05625
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.11875,
+          "mean": 0.12405500000000001,
+          "p95": 0.125,
+          "p99": 0.15,
+          "maximum": 13.89375
+        },
+        "speedup": 41.789473684210535
+      },
+      "brake_path": {
+        "python": {
+          "count": 5000,
+          "median": 3.6,
+          "mean": 3.6878600000000006,
+          "p95": 3.9,
+          "p99": 7.2,
+          "maximum": 38.5
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 0.2,
+          "mean": 0.17544,
+          "p95": 0.2,
+          "p99": 0.2,
+          "maximum": 12.0
+        },
+        "speedup": 18.0
+      },
+      "prepare_history": {
+        "python": {
+          "count": 5000,
+          "median": 30.3625,
+          "mean": 31.134659999999997,
+          "p95": 36.8325,
+          "p99": 44.288562500000026,
+          "maximum": 74.1625
+        },
+        "cpp": {
+          "count": 5000,
+          "median": 1.35625,
+          "mean": 1.4166425,
+          "p95": 1.606562500000001,
+          "p99": 2.8813125000000013,
+          "maximum": 19.61875
+        },
+        "speedup": 22.387096774193548
+      },
+      "renderer_load": {
+        "python": {
+          "count": 100,
+          "median": 1349.0,
+          "mean": 1374.0260000000007,
+          "p95": 1483.51,
+          "p99": 1516.352,
+          "maximum": 1531.4
+        },
+        "cpp": {
+          "count": 100,
+          "median": 421.6,
+          "mean": 423.1099999999999,
+          "p95": 440.255,
+          "p99": 456.1250000000003,
+          "maximum": 508.1
+        },
+        "speedup": 3.1997153700189753
+      },
+      "renderer_profile": {
+        "python": {
+          "count": 1000,
+          "median": 3346.0,
+          "mean": 3399.4842999999996,
+          "p95": 3718.5449999999996,
+          "p99": 4062.256,
+          "maximum": 5000.7
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 2797.2,
+          "mean": 2848.1869,
+          "p95": 3143.955,
+          "p99": 3482.0649999999996,
+          "maximum": 3903.4
+        },
+        "speedup": 1.1961961961961962
+      },
+      "renderer_begin": {
+        "python": {
+          "count": 1000,
+          "median": 2.6,
+          "mean": 2.6775000000000007,
+          "p95": 2.8,
+          "p99": 3.608999999999992,
+          "maximum": 17.4
+        },
+        "cpp": {
+          "count": 1000,
+          "median": 0.1,
+          "mean": 0.0561,
+          "p95": 0.1,
+          "p99": 0.2,
+          "maximum": 0.6
+        },
+        "speedup": 26.0
+      },
+      "renderer_step": {
+        "python": {
+          "count": 6000,
+          "median": 21.3,
+          "mean": 23.100633333333338,
+          "p95": 27.305000000000017,
+          "p99": 64.10300000000007,
+          "maximum": 298.4
+        },
+        "cpp": {
+          "count": 6000,
+          "median": 16.8,
+          "mean": 17.710116666666668,
+          "p95": 21.3,
+          "p99": 28.40100000000002,
+          "maximum": 460.8
+        },
+        "speedup": 1.2678571428571428
+      }
+    }
+  },
+  "provenance": "reference-environment.json",
+  "measurement_note": "Target, selected decode and history preparation: 16-call batch averages; buffered sample: 4-call averages. Other rows: individual elapsed times. Warm filesystem and JIT.",
+  "raw_csv_sha256": {
+    "16_cpp_r0.csv": "39a7a1fa19f4777fee217da2622bc3d614d738fc2f8df3ae01442a419676527a",
+    "16_cpp_r0.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "16_cpp_r0.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "16_cpp_r1.csv": "65c5c40959a2afbedb68228b29b33f3c5495d9af996f780267562a4efd97585b",
+    "16_cpp_r1.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "16_cpp_r1.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "16_cpp_r2.csv": "3c5df59ba79f67b96cab7fed9cfb48a4132c86c4224a528da5a870ac65d46d72",
+    "16_cpp_r2.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "16_cpp_r2.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "16_cpp_r3.csv": "9eafb84e8420aded26a64de25bbb014fc29e3de1d2dd9cdd2045a4bf7b649efb",
+    "16_cpp_r3.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "16_cpp_r3.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "16_cpp_r4.csv": "8093a1189da1e4222a6cf2d6aea14ba3e2ad591bce52bb58aa8daf3edebf9f5b",
+    "16_cpp_r4.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "16_cpp_r4.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "16_python_r0.csv": "e4866635edf6e8c0619ee1614dd0dd9c02de4243fd7af7ea86fc929ecc4598ad",
+    "16_python_r1.csv": "87cb48b59dc998e85bef1f77a6c0053cd73ca4e0f11c3e8a806574d257ed7869",
+    "16_python_r2.csv": "af511f752d773fe071de1dd2780795850d458f7911b4b95d5dd0c72d53c6c149",
+    "16_python_r3.csv": "d4232b5f4a2de454a79f2bc7f9cb89df13d0bcb76ddfd7dea4fdac78abd26f6d",
+    "16_python_r4.csv": "a5d663520a545e88e4ed59539d0c1468c465c552a684d6abd4030ffbd841c1bf",
+    "32_cpp_r0.csv": "29656e63b2a42c92dbef964f62c9fc53e10cac9194141155ff014f2a6db84157",
+    "32_cpp_r0.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "32_cpp_r0.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "32_cpp_r1.csv": "df9b3e18e48b29f8eec16376a3903a4f93fe3058e97a5c49839bf5a1426031fe",
+    "32_cpp_r1.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "32_cpp_r1.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "32_cpp_r2.csv": "1e9844b96881d19480112e11b51e9bcd38896ad712a6cfec71e6e702119d97d7",
+    "32_cpp_r2.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "32_cpp_r2.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "32_cpp_r3.csv": "392f258c913140e35f4762aae5bb2517bcc078bea5b61e1e480e95c834c50adc",
+    "32_cpp_r3.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "32_cpp_r3.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "32_cpp_r4.csv": "105714ba3a039f7ea414245e02fa755b9a28a3c79bc7f46201aa7c8ab825bd13",
+    "32_cpp_r4.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "32_cpp_r4.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "32_python_r0.csv": "79cecd84c840d88959ce503f55dee1aa3ed36fb8aa0132e3570b58d45ed3c32c",
+    "32_python_r1.csv": "1849ffbbe639ec55907c36f74248f1c810bf2f4e236b0b47f2ea65a2c8575e45",
+    "32_python_r2.csv": "eb710dd80fb7021c6993f0342e2dd154b6d5af57890160453956554a2864d2f5",
+    "32_python_r3.csv": "d3cef8f7c0889a935641d59fa351718ddf7f2a4076b2fe22f1deeb2038f27163",
+    "32_python_r4.csv": "8dd2c210959a9dd93166e043440917fd46546045147ad6d87d121a3868c018ef",
+    "8_cpp_r0.csv": "1143ec0981ce036fdfbf95adfd716891453fbd7c65953d2b09c84b6657829be8",
+    "8_cpp_r0.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "8_cpp_r0.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "8_cpp_r1.csv": "f6029b64d5ba88a20b73d23ae9d4dcb4b3eb03eb5fa937863ab18e23fe4f56ed",
+    "8_cpp_r1.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "8_cpp_r1.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "8_cpp_r2.csv": "a39211ca1a2a2f8322192b65bb14ee9347dfdb2aa1ee44fe6ce85e14d6e21504",
+    "8_cpp_r2.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "8_cpp_r2.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "8_cpp_r3.csv": "1038d2da487dae4423af98b0bd0ba2a07d71449954b6696c46a19492bd29ffc9",
+    "8_cpp_r3.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "8_cpp_r3.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "8_cpp_r4.csv": "205aff6096ae53490560d88b5c6ccdd8b505c3d50f718e1f6b6707e81e56e758",
+    "8_cpp_r4.csv.prefix.csv": "b8b4466e0ad645adafe3a0190599c6d59b6907dc015cdd1cb48e52a8fb8cea8b",
+    "8_cpp_r4.csv.reports.csv": "060394a702da28c2d92ffb274b293faf6863b509cef8aca7022470385ada688c",
+    "8_python_r0.csv": "03d56b0c68009738beb31fd0d5680de8865a6bbf6d23de93e6ec0f23e8c141f0",
+    "8_python_r1.csv": "db21d431e1fbeb8a12b59414efb559a9f527af5418933d795e2730ca401be444",
+    "8_python_r2.csv": "36138bb9e56d586bfdec95121671855a7feed47bf488ebea1965cb414990aaaf",
+    "8_python_r3.csv": "a424c7794b9b8cb86c5faa065f673e6bb3ff2efa2f7349970bfa17384152d9ec",
+    "8_python_r4.csv": "6e6f828c7fae1777ff0aacd08238c60f889a13012c699eb2aad11210e46d3593"
+  }
+}

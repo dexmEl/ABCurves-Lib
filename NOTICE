@@ -1,0 +1,24 @@
+ABCurves Native SDK
+
+Derived from ABCurves by Optima Manent:
+https://github.com/optima-manent/ABCurves
+Copyright (c) 2026 Optima Manent. Upstream software license: MIT (see LICENSE).
+
+This repository contains a native Continuous Planner port, C ABI, bindings,
+contract validation, and publication tooling. Original Python reference code
+and C99 Renderer source/notices are preserved under Native/. This is a modified
+implementation; no upstream endorsement is implied.
+
+Dataset/reference attribution:
+Uses ABCurves movement datasets by Optima Manent, licensed under CC BY 4.0.
+https://github.com/optima-manent/ABCurves
+https://creativecommons.org/licenses/by/4.0/legalcode
+See Native/DATASET_LICENSE.md. Synthetic test streams and exported representations
+may include prepared reference histories; such preparation/compression is a
+modification. No raw capture dataset is included in SDK packages.
+
+The maintainer has confirmed that the upstream MIT license covers the model
+weights, exported model representations and embedded Renderer tables. Preserve
+the upstream copyright and complete MIT license text with distributions.
+Dataset material retains its separate CC BY 4.0 attribution requirements.
+See docs/licensing.md and packaging/publication.json for coverage and packaging.

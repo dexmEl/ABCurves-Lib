@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abcurves-native"
+version = "1.5.0"
+description = "ABCurves native planner bindings through the stable C ABI"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+numpy = ["numpy>=1.23"]
+test = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+abcurves_native = ["NOTICE", "_native/*.dll", "_native/*.so*", "_native/*.dylib"]

@@ -1,0 +1,200 @@
+{
+  "format_version": 1,
+  "assets": {
+    "lib/models/16ms/manifest.json": {
+      "bytes": 9619,
+      "sha256": "5b7326e9b946443bd7886d3a16703084e4af9eb516f9e18505aff0b61e838075",
+      "role": "native planner runtime"
+    },
+    "lib/models/16ms/model.abcmodel": {
+      "bytes": 828085,
+      "sha256": "096be81c3a464f3fffe6f3270d091d88d237f8f39b886cbfd972ea38918850ca",
+      "role": "native planner runtime"
+    },
+    "lib/models/32ms/manifest.json": {
+      "bytes": 9616,
+      "sha256": "889373a24545a743c8b4a27fd4da913217d2c5064134c806f34a3cb1f23d54b1",
+      "role": "native planner runtime"
+    },
+    "lib/models/32ms/model.abcmodel": {
+      "bytes": 828085,
+      "sha256": "cc38312f2df704fe132068abd930dd6be8c3ea3755fe75ba62d3d3d322ece3f5",
+      "role": "native planner runtime"
+    },
+    "lib/models/8ms/manifest.json": {
+      "bytes": 9615,
+      "sha256": "28359e67e8db97e70f84a5e54dd7ed5b7fbf4a78214e016b734bd04de84b3118",
+      "role": "native planner runtime"
+    },
+    "lib/models/8ms/model.abcmodel": {
+      "bytes": 828085,
+      "sha256": "4bb97f154ddf53bec1963ad0d9e9653f561c7f61f5dc1fb50c5dd9dc3ec0dad2",
+      "role": "native planner runtime"
+    },
+    "Native/models/continuous/brake.onnx": {
+      "bytes": 127338,
+      "sha256": "ec511415341b72284498ae0333cb12da6bf26e1f9c06562bc468766bfa636c24",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/choice.onnx": {
+      "bytes": 44933,
+      "sha256": "805f517a27219bc20fd0418be02cbf5316a601f040533056fe61304ef5e2ac74",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/choice_split.onnx": {
+      "bytes": 43193,
+      "sha256": "7a8d36ab01e719423854051a6b1a4f35536e5688e2eaf3e9e154f32e5e174bf1",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/events.onnx": {
+      "bytes": 145497,
+      "sha256": "cd839db370bf0804550cc42e63667736ddd2c2f8fa05cd46453c7254c28dabe3",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/events.pt": {
+      "bytes": 145765,
+      "sha256": "371d19e08d80d720ad5f83e1052096076ae03e79fbd1b98c3389c5b16bb04d4a",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/hazard.onnx": {
+      "bytes": 17844,
+      "sha256": "ebd385e53ca15bb5ec5609018bdd93f2213875a41b3c78912986b00dfda12e53",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/manifest.json": {
+      "bytes": 11951,
+      "sha256": "130ed3560c21223a42b8770d1de69a6178ae7e047ee6a32679fa3bad2f399ee5",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/motor.onnx": {
+      "bytes": 552418,
+      "sha256": "116126ef8a6dc7aae027de596158d51e44a06fa30dcfd7058dfcde463106542c",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/motor.pt": {
+      "bytes": 650104,
+      "sha256": "52db2d89495d8ebe76c3d09162a99e32132d6d2e73ed76ce6605cd956c6dc86f",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/selector.pt": {
+      "bytes": 44373,
+      "sha256": "8675c549da677f096b3e40fcf9125a9aedf15ab57e6da94e0bcb055101bdeb1d",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous/weights.npz": {
+      "bytes": 838096,
+      "sha256": "018a096c66213c62b429caf4a8ae6f0470f6e283248a24f476f0fed3e36ea881",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-16/brake.onnx": {
+      "bytes": 127338,
+      "sha256": "9fdd929374d6fa973ba1f1146d32bcc131b3fce32210c8aa4be56b05f79efaaa",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-16/choice.onnx": {
+      "bytes": 44933,
+      "sha256": "98311afded5c560070d058c4a1aec079dc4728989d6cf6d62ddf6ddb0caaa400",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-16/choice_split.onnx": {
+      "bytes": 43193,
+      "sha256": "bd74a0aa9c3725e8fa6d4ab7db4a1047970fc3fddf25a50554ee28c90e2504a0",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-16/events.onnx": {
+      "bytes": 145497,
+      "sha256": "ac3277b48aa1bbe6cdae315f935d429666f4505f366503a5d4827b40e0049193",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-16/hazard.onnx": {
+      "bytes": 17844,
+      "sha256": "02783f79dada3bf3cb962006f0b7c6459b11707efc83766f0fc12feead059b97",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-16/manifest.json": {
+      "bytes": 9060,
+      "sha256": "fd4dbe1b4e933d81efba3958f1519c87c590926d8ea591c0d2ff469db3a824c0",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-16/motor.onnx": {
+      "bytes": 552418,
+      "sha256": "acb975aa159d93e7afdd968aafab8fbba5437a732b5ccdaa4e6e13558da5fba6",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-16/weights.npz": {
+      "bytes": 838096,
+      "sha256": "5e435f4cf89ecf76504bd7b578c262fd1b6034bdcb8fff5f57810565dcab7266",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-8/brake.onnx": {
+      "bytes": 127338,
+      "sha256": "1eb218e0dfafe648561a7b6edb6744306843c68ca2261799260ac537d2529f06",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-8/choice.onnx": {
+      "bytes": 44933,
+      "sha256": "679b5a5b6d7582498640fb190de2be8339a7da16f20758d225c75b542e5b7ed8",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-8/choice_split.onnx": {
+      "bytes": 43193,
+      "sha256": "b59873261f7999667fcade4efcf70f9269d98eec38b8d9a97bbbcd199ff0505f",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-8/events.onnx": {
+      "bytes": 145497,
+      "sha256": "1d56d218e4b1f437078dd8e6cf0efb821f019a80a096e68a3391eb811345953b",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-8/hazard.onnx": {
+      "bytes": 17844,
+      "sha256": "ea48bb4ddbcfc25fa0360109ce842bfc446b213954d202f2fd3910cf8c376ef1",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-8/manifest.json": {
+      "bytes": 9059,
+      "sha256": "60ba09b82dccdf2743f26f42e73fa3d1559cac4edd1062c730b9c3b0a24d1e0c",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-8/motor.onnx": {
+      "bytes": 552418,
+      "sha256": "f852175a390c042b45d74aa7357cb20b5c0aa742aab518cc271afeb99e7563ec",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/continuous-8/weights.npz": {
+      "bytes": 838096,
+      "sha256": "ec5e064aca5868d9fccba4cc0253a4426f9ebfab7d30b4a37a6e2985948244a4",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/manifest.json": {
+      "bytes": 5795,
+      "sha256": "3d0542acd04b54c3bddc017098e0c419adcb93f91774ccdead18915cdab02898",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/planner_seed23.pt": {
+      "bytes": 1500389,
+      "sha256": "d691ba155c4fa9b403c5a3e2ed9c44123fe00d3d1bee15c55ee9226f4531a23e",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/planner_seed7.pt": {
+      "bytes": 1500345,
+      "sha256": "d82c93071224f7eb225d1f2bcf46d52669a7270db414431d7622e032439b280d",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/renderer_adapter.bin": {
+      "bytes": 4972,
+      "sha256": "2a90e36c1b4c4b34b505ab73fcbfc6dfe7129e5cec209bd14e4447074b49ea13",
+      "role": "upstream reference/export asset"
+    },
+    "Native/models/renderer_global_h80.bin": {
+      "bytes": 44484,
+      "sha256": "405c34bceb55485dfd6bd3c0368bce079feea680a64c6b261904ef5b4713e240",
+      "role": "optional Renderer runtime"
+    },
+    "Native/models/renderer_global_h80_float.pt": {
+      "bytes": 144457,
+      "sha256": "dd10ebe7d08011d7dbd91736e54a84faec4844f69a911a9dfd57eb83cd8b5e5c",
+      "role": "upstream reference/export asset"
+    }
+  }
+}

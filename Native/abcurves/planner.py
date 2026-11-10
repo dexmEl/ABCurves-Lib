@@ -1,0 +1,676 @@
+"""The Planner: 16 hypotheses for how a human finishes the movement.
+
+Given the causal A->B evidence, a checkpoint-selected raw or causal-EMA view
+feeds the encoder and matching summaries. A separately declared causal view
+provides the ProDMP boundary velocity. A small temporal conv-net emits **16
+complete candidate continuations at once** -- each one a ProDMP weight vector
+plus a log-duration.
+
+Why 16 heads instead of one prediction: humans are not deterministic.  From
+the same A->B, many different-but-valid B->C continuations exist, and a model
+trained to minimize error against the one realized future collapses onto the
+*average* movement -- statistically the most detectable thing you can produce.
+The heads are trained with **relaxed winner-takes-all** (see
+``training/train_planner.py``): for every training example, the head closest
+to the realized human future gets almost all of the gradient, and the other 15
+are left nearly alone.  Over the dataset the heads spread out and tile the
+space of plausible human continuations -- 16 "personalities" instead of one
+compromise.
+
+The frozen deployment rule is deliberately simple: **sample one head uniformly
+at random** per request. This keeps the full learned distribution in play
+without searching for a preferred-looking answer.
+
+Everything the Planner needs at inference lives inside one checkpoint
+export: model weights, input normalizers, feature-name list, and ProDMP decode
+metadata.  ``Planner.plan()`` is the entry point.
+"""
+
+from __future__ import annotations
+
+import math
+from dataclasses import dataclass, fields
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+import torch
+import torch.nn.functional as F
+from torch import nn
+
+from .features import summary_features
+from .prefix_representation import (
+    DEFAULT_PREFIX_EMA_ALPHA,
+    RAW_PREFIX_REPRESENTATION,
+    PrefixRepresentationSpec,
+    apply_prefix_representation,
+    prefix_representation_from_config,
+    prefix_representation_from_payload,
+)
+from .prodmp import ProDMP, ProDMPConfig, _as_dof_vector
+
+CONTRACTED_PLANNER_SCHEMA = "abcurves.planner.v2"
+SUPPORTED_PLANNER_SCHEMAS = {CONTRACTED_PLANNER_SCHEMA}
+
+
+# ---------------------------------------------------------------------------
+# Config (the subset of training knobs the architecture depends on)
+# ---------------------------------------------------------------------------
+@dataclass(frozen=True)
+class PlannerConfig:
+    seed: int = 7
+    profile_bins: int = 8
+    n_basis: int = 20
+    alpha: float = 25.0
+    alpha_phase: float = 3.0
+    weight_ridge: float = 1e-3
+    eps_scale: float = 1.0
+    prefix_len: int = 160
+    # Frozen raw-prefix metadata retained in every exported checkpoint.
+    prefix_representation: str = RAW_PREFIX_REPRESENTATION
+    prefix_ema_alpha: float = DEFAULT_PREFIX_EMA_ALPHA
+    use_summary_features: bool = True
+    hidden: int = 96
+    blocks: int = 3
+    dropout: float = 0.15
+    batch_size: int = 128
+    epochs: int = 260
+    learning_rate: float = 1e-3
+    weight_decay: float = 1e-4
+    # Differentiable surrogate trajectory loss (normalized-time grid).
+    grid_size: int = 48
+    dir_s: float = 0.08
+    w_endpoint: float = 1.0
+    w_path: float = 0.6
+    w_speed: float = 0.5
+    w_duration: float = 0.75
+    w_dir: float = 0.8
+    # Relaxed winner-takes-all schedule.
+    heads: int = 16
+    wta_eps_start: float = 0.5
+    wta_eps_end: float = 0.05
+    # The final E260 recipe reaches the RWTA floor at epoch 46, then leaves
+    # the sixteen modes stable for the remainder of training.
+    wta_anneal_epochs: int = 45
+    # Hinge-at-the-human-envelope turn penalty (kills the zigzag caricature
+    # without over-straightening; thresholds are duration-conditional p95 turn
+    # rates measured on REAL train curves, computed by the training script).
+    w_turn_hinge: float = 0.3
+    turn_hinge_thresholds: tuple[float, ...] = ()
+    turn_hinge_norm: float = 0.5
+
+    def __post_init__(self) -> None:
+        if self.epochs < 1:
+            raise ValueError("epochs must be positive")
+        if self.wta_anneal_epochs < 1:
+            raise ValueError("wta_anneal_epochs must be positive")
+        prefix_representation_from_config(self)
+
+
+def planner_config_from_dict(raw: dict[str, Any]) -> PlannerConfig:
+    """Build a PlannerConfig from a stored export dict, ignoring unknown keys."""
+
+    known = {f.name for f in fields(PlannerConfig)}
+    kwargs = {k: v for k, v in raw.items() if k in known}
+    if "turn_hinge_thresholds" in kwargs:
+        kwargs["turn_hinge_thresholds"] = tuple(kwargs["turn_hinge_thresholds"])
+    return PlannerConfig(**kwargs)
+
+
+# ---------------------------------------------------------------------------
+# Model (a small causal TCN encoder + 16 linear heads)
+# ---------------------------------------------------------------------------
+class TemporalBlock(nn.Module):
+    def __init__(self, hidden: int, dropout: float):
+        super().__init__()
+        self.conv1 = nn.Conv1d(hidden, hidden, kernel_size=5)
+        self.conv2 = nn.Conv1d(hidden, hidden, kernel_size=5)
+        self.norm1 = nn.LayerNorm(hidden)
+        self.norm2 = nn.LayerNorm(hidden)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        y = F.pad(x, (4, 0))
+        y = self.conv1(y).transpose(1, 2)
+        y = self.dropout(F.relu(self.norm1(y))).transpose(1, 2)
+        y = F.pad(y, (4, 0))
+        y = self.conv2(y).transpose(1, 2)
+        y = self.dropout(F.relu(self.norm2(y))).transpose(1, 2)
+        return x + y
+
+
+class TCNEncoder(nn.Module):
+    def __init__(self, in_channels: int, summary_dim: int, hidden: int, blocks: int, dropout: float):
+        super().__init__()
+        self.input = nn.Conv1d(in_channels, hidden, kernel_size=1)
+        self.blocks = nn.ModuleList([TemporalBlock(hidden, dropout=dropout) for _ in range(int(blocks))])
+        self.summary = (
+            nn.Sequential(nn.Linear(summary_dim, hidden), nn.ReLU(), nn.Dropout(dropout))
+            if summary_dim > 0
+            else None
+        )
+        self.out_dim = hidden + (hidden if summary_dim > 0 else 0)
+
+    def forward(self, prefix: torch.Tensor, mask: torch.Tensor, summary: torch.Tensor) -> torch.Tensor:
+        x = prefix.transpose(1, 2)
+        h = self.input(x)
+        for block in self.blocks:
+            h = block(h)
+        h = h.transpose(1, 2)
+        # Prefix tensors are left-padded and right-aligned, so the B-adjacent
+        # timestep is always the final position.
+        last = h[:, -1, :]
+        if self.summary is not None:
+            last = torch.cat([last, self.summary(summary)], dim=-1)
+        return last
+
+
+class MultiHeadModel(nn.Module):
+    """16 candidate (ProDMP weights + log-duration) vectors from one forward."""
+
+    def __init__(self, summary_dim: int, out_dim: int, heads: int, config: PlannerConfig):
+        super().__init__()
+        self.heads = int(heads)
+        self.out_dim = int(out_dim)
+        self.encoder = TCNEncoder(3, summary_dim, config.hidden, config.blocks, config.dropout)
+        self.trunk = nn.Sequential(
+            nn.Linear(self.encoder.out_dim, config.hidden), nn.ReLU(), nn.Dropout(config.dropout)
+        )
+        self.out = nn.Linear(config.hidden, self.heads * self.out_dim)
+
+    def forward(self, prefix: torch.Tensor, mask: torch.Tensor, summary: torch.Tensor) -> torch.Tensor:
+        h = self.trunk(self.encoder(prefix, mask, summary))
+        return self.out(h).view(-1, self.heads, self.out_dim)
+
+
+# ---------------------------------------------------------------------------
+# Decode: normalized head outputs -> smooth delta streams via ProDMP
+# ---------------------------------------------------------------------------
+def decode_heads(
+    prodmp: ProDMP,
+    y_norm: np.ndarray,
+    y_mean: np.ndarray,
+    y_std: np.ndarray,
+    ydot_b: np.ndarray,
+    *,
+    horizon: int,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Decode ``[N, K, D]`` normalized head outputs to delta streams + masks.
+
+    Returns ``(dxdy [N, K, horizon, 2], mask [N, K, horizon])``.  ``ydot_b`` is
+    the boundary velocity per example, ``[N, 2]``.
+    """
+
+    y_raw = np.asarray(y_norm, dtype=np.float64) * y_std.reshape(1, 1, -1) + y_mean.reshape(1, 1, -1)
+    n, k, d = y_raw.shape
+    coeff_dim = d - 1
+    w = y_raw[:, :, :coeff_dim].reshape(n, k, prodmp.n_weights, 2)
+    duration = np.exp(np.clip(y_raw[:, :, -1], 0.0, math.log(float(horizon))))
+    out = np.zeros((n, k, horizon, 2), dtype=np.float32)
+    masks = np.zeros((n, k, horizon), dtype=np.float32)
+    for i in range(n):
+        for j in range(k):
+            dur = max(1, min(round(float(duration[i, j])), horizon))
+            deltas = prodmp.generate_deltas(w[i, j], np.asarray(ydot_b[i], dtype=np.float64), dur, goal_mode="learned")
+            out[i, j, :dur] = deltas
+            masks[i, j, :dur] = 1.0
+    return out, masks
+
+
+class _CachedProDMP(ProDMP):
+    """A ProDMP whose boundary components are memoized per duration (exact).
+
+    The decode path always evaluates the basis at ``t = 1..d`` with
+    ``tau = d, t_b = 0`` -- a pure function of ``d``.  Reusing the arrays is
+    bit-exact by construction and turns a ~0.4 ms interpolation into a lookup.
+    """
+
+    def __init__(self, cfg: ProDMPConfig):
+        super().__init__(cfg)
+        self._components_cache: dict[int, tuple] = {}
+
+    def _components(self, t, tau, t_b):
+        t_arr = np.asarray(t, dtype=np.float64).reshape(-1)
+        d = len(t_arr)
+        canonical = (
+            d > 0
+            and float(t_b) == 0.0
+            and float(tau) == float(d)
+            and t_arr[0] == 1.0
+            and t_arr[-1] == float(d)
+            and (d < 3 or bool(np.array_equal(t_arr, np.arange(1, d + 1, dtype=np.float64))))
+        )
+        if not canonical:
+            return super()._components(t, tau, t_b)
+        return self._canonical_components(d)
+
+    def _canonical_components(self, d: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Components for positive integer duration, t=1..d, tau=d, B=0."""
+
+        hit = self._components_cache.get(d)
+        if hit is None:
+            t = np.arange(1, d + 1, dtype=np.float64)
+            a = self.alpha / (2.0 * float(d))
+            e = np.exp(-a * t)
+            xi2 = t * e
+            xi1 = e - (-a) * xi2
+            # Phi(0) and its derivative are zero, so H=Phi. Preserve the
+            # general formula's operation order and interpolation; no
+            # derivative samples or boundary corrections are needed here.
+            s = t / float(d)
+            h = np.empty((d, self.n_weights), dtype=np.float64)
+            for j in range(self.n_weights):
+                h[:, j] = np.interp(s, self._s_grid, self._phi_grid[:, j])
+            hit = (xi1, xi2, h)
+            self._components_cache[d] = hit
+        return hit
+
+    def generate_deltas(
+        self,
+        w_g: np.ndarray,
+        ydot_b: np.ndarray,
+        duration: int,
+        *,
+        y_b: np.ndarray | None = None,
+        goal: np.ndarray | None = None,
+        goal_mode: str = "learned",
+    ) -> np.ndarray:
+        """Use cached canonical components for a learned, B-relative path."""
+
+        d = int(duration)
+        w = np.atleast_2d(np.asarray(w_g, dtype=np.float64))
+        if y_b is not None or goal_mode != "learned" or d < 1 or w.ndim != 2:
+            return super().generate_deltas(
+                w_g, ydot_b, duration, y_b=y_b, goal=goal, goal_mode=goal_mode
+            )
+        if w.shape[0] != self.n_weights:
+            raise ValueError(f"w_g must have {self.n_weights} rows, got {w.shape[0]}")
+        # Match generate()'s C-order weights without copying an already
+        # contiguous decoded head (strided matmul can round differently).
+        w = np.ascontiguousarray(w)
+        velocity = _as_dof_vector(ydot_b, w.shape[1])
+        xi1, xi2, h = self._canonical_components(d)
+        positions = (
+            xi1[:, None] * np.zeros((1, w.shape[1]), dtype=np.float64)
+            + xi2[:, None] * velocity[None, :]
+            + h @ w
+        )
+        deltas = np.empty_like(positions)
+        deltas[0] = positions[0]
+        np.subtract(positions[1:], positions[:-1], out=deltas[1:])
+        return deltas
+
+    def prewarm(self, max_duration: int) -> None:
+        for d in range(1, int(max_duration) + 1):
+            self._canonical_components(d)
+
+
+# ---------------------------------------------------------------------------
+# The deployable planner
+# ---------------------------------------------------------------------------
+@dataclass
+class Intent:
+    """One sampled smooth B->C continuation."""
+
+    smooth_dxdy: np.ndarray  # [H, 2] float32 smooth deltas (1 per ms)
+    mask: np.ndarray  # [H] float32 validity mask
+    duration_ms: int
+    head: int
+
+
+def _validate_plan_inputs(
+    prefix: np.ndarray,
+    target_rel_at_B: tuple[float, float],
+    target_radius: float,
+    progress: float,
+    b_index_ms: float | None,
+) -> tuple[np.ndarray, tuple[float, float], float, float, float | None]:
+    """Apply the public Planner contract before either decoding entry point."""
+
+    prefix_array = np.asarray(prefix)
+    try:
+        prefix_finite = bool(np.all(np.isfinite(prefix_array)))
+    except TypeError:
+        prefix_finite = False
+    if (
+        prefix_array.ndim != 2
+        or prefix_array.shape[1:] != (2,)
+        or len(prefix_array) == 0
+        or not prefix_finite
+    ):
+        raise ValueError("prefix must be a non-empty finite array with shape (P, 2)")
+    try:
+        target = np.asarray(target_rel_at_B, dtype=np.float64).reshape(-1)
+        radius = float(target_radius)
+        progress_value = float(progress)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("target geometry and progress must be numeric") from exc
+    if target.shape != (2,) or not bool(np.all(np.isfinite(target))):
+        raise ValueError("target_rel_at_B must contain two finite count-space values")
+    if not np.isfinite(radius) or radius <= 0.0:
+        raise ValueError("target_radius must be finite and positive")
+    if not np.isfinite(progress_value) or not 0.0 <= progress_value <= 1.0:
+        raise ValueError("progress must lie in [0, 1]")
+    if b_index_ms is None:
+        b_index = None
+    else:
+        b_index = float(b_index_ms)
+        if not np.isfinite(b_index) or b_index < 0.0:
+            raise ValueError("b_index_ms must be finite and non-negative")
+    return (
+        prefix_array,
+        (float(target[0]), float(target[1])),
+        radius,
+        progress_value,
+        b_index,
+    )
+
+
+class Planner:
+    """Load-once wrapper around a contracted Planner export.
+
+    >>> planner = Planner("models/planner_seed7.pt")
+    >>> intent = planner.plan(prefix_counts, target_rel_at_B=(120.0, -35.0),
+    ...                       target_radius=18.0, progress=0.65, seed=7)
+    >>> intent.smooth_dxdy[: intent.duration_ms]  # the smooth B->C plan
+    """
+
+    def __init__(
+        self,
+        export_path: str | Path,
+        device: str = "cpu",
+        *,
+        prewarm_decode: bool = False,
+    ):
+        self.path = Path(export_path)
+        # Release Planner exports contain only tensors and primitive metadata.
+        # Keep PyTorch's restricted unpickler enabled even after the manifest
+        # hash check: the digest catches accidents, while ``weights_only`` also
+        # avoids executing arbitrary pickle globals from a replaced container.
+        payload = torch.load(self.path, map_location="cpu", weights_only=True)
+        schema = payload.get("schema")
+        if schema not in SUPPORTED_PLANNER_SCHEMAS:
+            raise RuntimeError(
+                f"unsupported planner schema {schema!r} in {self.path}; "
+                f"expected one of {sorted(SUPPORTED_PLANNER_SCHEMAS)!r}"
+            )
+        self.payload: dict[str, Any] = payload
+        # Every supported export declares the exact causal onset/B contract
+        # expected by deployment.
+        self.seam_contract: dict[str, Any] | None = payload.get("seam_contract")
+        if not isinstance(self.seam_contract, dict):
+            raise RuntimeError(
+                f"contracted planner {self.path} has no causal seam contract"
+            )
+        self.prefix_representation_spec = prefix_representation_from_payload(payload)
+        self.device = torch.device(device)
+        config_record = dict(payload["planner_config"])
+        config_record.setdefault(
+            "prefix_representation", self.prefix_representation_spec.name
+        )
+        config_record.setdefault(
+            "prefix_ema_alpha",
+            self.prefix_representation_spec.causal_ema_alpha,
+        )
+        cfg = planner_config_from_dict(config_record)
+        self.config = cfg
+        self.heads = int(payload["heads"])
+        self.horizon = int(payload["horizon"])
+        self.prefix_len = int(payload["planner_config"]["prefix_len"])
+        self.summary_names: list[str] = list(payload["summary_feature_names"])
+
+        self.model = MultiHeadModel(
+            int(payload["summary_dim"]), int(payload["target_dim"]), self.heads, cfg
+        ).to(self.device)
+        self.model.load_state_dict(payload["model_state_dict"])
+        self.model.eval()
+
+        self.prodmp = _CachedProDMP(
+            ProDMPConfig(
+                n_basis=int(payload["prodmp"]["n_basis"]),
+                alpha=float(payload["prodmp"]["alpha"]),
+                alpha_phase=float(payload["prodmp"]["alpha_phase"]),
+                ridge=float(payload["prodmp"]["ridge"]),
+            )
+        )
+        if prewarm_decode:
+            # Prepare all durations so live decode never pays the cold
+            # basis-interpolation cost. Optional for offline use.
+            self.prodmp.prewarm(self.horizon)
+
+        # Normalizers, materialized once.
+        self._prefix_mean = self._payload_array("prefix_mean").reshape(1, 2)
+        self._prefix_std = self._payload_array("prefix_std").reshape(1, 2)
+        self._prefix_std[self._prefix_std < 1e-6] = 1.0
+        self._summary_mean = self._payload_array("summary_mean").reshape(1, -1)
+        self._summary_std = self._payload_array("summary_std").reshape(1, -1)
+        self._summary_std[self._summary_std < 1e-6] = 1.0
+        self.y_mean = self._payload_array("y_mean")
+        self.y_std = self._payload_array("y_std")
+
+    def _payload_array(self, key: str) -> np.ndarray:
+        value = self.payload[key]
+        if hasattr(value, "detach") and hasattr(value, "cpu"):
+            return value.detach().cpu().numpy().astype(np.float32)
+        return np.asarray(value, dtype=np.float32)
+
+    # ------------------------------------------------------------------ #
+    # Input encoding
+    # ------------------------------------------------------------------ #
+    def represented_prefix(self, prefix: np.ndarray) -> np.ndarray:
+        """Return the encoder/summary view of the deployable raw window."""
+
+        return self.represented_prefix_views(prefix)[0]
+
+    def represented_prefix_views(
+        self,
+        prefix: np.ndarray,
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """Return ``(encoder, boundary_velocity)`` views from one raw window.
+
+        Right alignment happens before either representation. Matching views
+        reuse the same array and avoid an unnecessary copy.
+        """
+
+        raw = np.asarray(prefix)
+        if raw.ndim != 2 or raw.shape[1:] != (2,):
+            raise ValueError("planner prefix must have shape (P, 2)")
+        window = raw[-self.prefix_len :]
+        represented = apply_prefix_representation(
+            window,
+            self.prefix_representation_spec,
+        )
+        return represented, represented
+
+    def boundary_prefix(self, prefix: np.ndarray) -> np.ndarray:
+        """Return the checkpoint-declared ProDMP boundary view."""
+
+        return self.represented_prefix_views(prefix)[1]
+
+    def _prefix_tensor(self, prefix: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        out = self._normalized_prefix_window(prefix, self.prefix_len)
+        return out, out[:, :, 2].copy()
+
+    def _normalized_prefix_window(self, prefix: np.ndarray, length: int) -> np.ndarray:
+        """Right-align raw rows; padding stays zero in normalized space."""
+
+        raw = np.asarray(prefix, dtype=np.float32)
+        take = min(length, raw.shape[0])
+        out = np.zeros((1, length, 3), dtype=np.float32)
+        if take <= 0:
+            return out
+        norm = (raw[-take:] - self._prefix_mean) / self._prefix_std
+        out[0, -take:, :2] = norm
+        out[0, -take:, 2] = 1.0
+        return out
+
+    def _summary_vector(self, features: dict[str, float]) -> np.ndarray:
+        x = np.asarray(
+            [[float(features.get(name, 0.0)) for name in self.summary_names]], dtype=np.float32
+        )
+        x[~np.isfinite(x)] = 0.0
+        out = (x - self._summary_mean) / self._summary_std
+        out[~np.isfinite(out)] = 0.0
+        return out.astype(np.float32)
+
+    # ------------------------------------------------------------------ #
+    # Forward + decode
+    # ------------------------------------------------------------------ #
+    def forward_all_heads(
+        self, prefix: np.ndarray, features: dict[str, float]
+    ) -> np.ndarray:
+        """One model forward -> normalized head outputs ``[1, heads, D]``.
+
+        ``prefix`` is raw at this public boundary. ``features`` must describe
+        the checkpoint-selected representation; :meth:`plan` and
+        :meth:`plan_all_heads` construct that feature dict automatically.
+        """
+
+        p = self.represented_prefix(prefix)
+        return self._forward_represented_prefix(p, features)
+
+    def _forward_represented_prefix(
+        self, prefix: np.ndarray, features: dict[str, float]
+    ) -> np.ndarray:
+        """Internal forward after the representation has been applied once."""
+
+        summary = self._summary_vector(features)
+        prefix_tensor, prefix_mask = self._prefix_tensor(prefix)
+        with torch.no_grad():
+            y_all = (
+                self.model(
+                    torch.as_tensor(prefix_tensor, dtype=torch.float32, device=self.device),
+                    torch.as_tensor(prefix_mask, dtype=torch.float32, device=self.device),
+                    torch.as_tensor(summary, dtype=torch.float32, device=self.device),
+                )
+                .detach()
+                .cpu()
+                .numpy()
+            )
+        return y_all
+
+    def decode_head(self, y_all: np.ndarray, head: int, ydot_b: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        """Decode ONE head at full 1 kHz resolution."""
+
+        y = y_all[:, head : head + 1, :]
+        dxdy, mask = decode_heads(
+            self.prodmp, y, self.y_mean, self.y_std, ydot_b.reshape(1, 2), horizon=self.horizon
+        )
+        return dxdy[0, 0], mask[0, 0]
+
+    # ------------------------------------------------------------------ #
+    # The planner entry point (at B)
+    # ------------------------------------------------------------------ #
+    def plan(
+        self,
+        prefix: np.ndarray,
+        *,
+        target_rel_at_B: tuple[float, float],
+        target_radius: float,
+        progress: float,
+        seed: int = 7,
+        head: int | None = None,
+        b_index_ms: float | None = None,
+    ) -> Intent:
+        """Sample one human-plausible smooth B->C continuation.
+
+        ``prefix`` is always the raw A->B count stream ``[P, 2]`` at 1 kHz.
+        The checkpoint's encoder view supplies summaries and the TCN; its
+        boundary view supplies ProDMP velocity. The frozen deployment rule
+        samples one of the 16 heads uniformly; pass ``head`` to force a
+        specific hypothesis (for inspection / A-B tests).
+        """
+
+        chosen: int | None = None
+        if head is not None:
+            chosen = int(head)
+            if not 0 <= chosen < self.heads:
+                raise ValueError(f"Planner head must be in [0, {self.heads - 1}]")
+
+        prefix, target_rel_at_B, target_radius, progress, b_index_ms = (
+            _validate_plan_inputs(
+                prefix, target_rel_at_B, target_radius, progress, b_index_ms
+            )
+        )
+
+        represented, boundary = self.represented_prefix_views(prefix)
+        feats = summary_features(
+            represented,
+            target_rel_at_B,
+            target_radius,
+            progress,
+            horizon=self.horizon,
+            b_index_ms=b_index_ms,
+        )
+        y_all = self._forward_represented_prefix(represented, feats)
+        if head is None:
+            rng = np.random.default_rng(seed)
+            chosen = int(rng.integers(0, self.heads))
+        assert chosen is not None
+        ydot_b = (
+            boundary[-1].astype(np.float64)
+            if len(boundary)
+            else np.zeros(2)
+        )
+        smooth, mask = self.decode_head(y_all, chosen, ydot_b)
+        return Intent(
+            smooth_dxdy=smooth,
+            mask=mask,
+            duration_ms=int(np.sum(mask > 0.5)),
+            head=chosen,
+        )
+
+    def plan_all_heads(
+        self,
+        prefix: np.ndarray,
+        *,
+        target_rel_at_B: tuple[float, float],
+        target_radius: float,
+        progress: float,
+        b_index_ms: float | None = None,
+    ) -> list[Intent]:
+        """Decode all 16 hypotheses (visualization / best-of-K evaluation)."""
+
+        prefix, target_rel_at_B, target_radius, progress, b_index_ms = (
+            _validate_plan_inputs(
+                prefix, target_rel_at_B, target_radius, progress, b_index_ms
+            )
+        )
+
+        represented, boundary = self.represented_prefix_views(prefix)
+        feats = summary_features(
+            represented,
+            target_rel_at_B,
+            target_radius,
+            progress,
+            horizon=self.horizon,
+            b_index_ms=b_index_ms,
+        )
+        y_all = self._forward_represented_prefix(represented, feats)
+        ydot_b = (
+            boundary[-1].astype(np.float64)
+            if len(boundary)
+            else np.zeros(2)
+        )
+        intents = []
+        for h in range(self.heads):
+            smooth, mask = self.decode_head(y_all, h, ydot_b)
+            intents.append(
+                Intent(smooth_dxdy=smooth, mask=mask, duration_ms=int(np.sum(mask > 0.5)), head=h)
+            )
+        return intents
+
+
+__all__ = [
+    "Planner",
+    "Intent",
+    "PlannerConfig",
+    "planner_config_from_dict",
+    "MultiHeadModel",
+    "TCNEncoder",
+    "TemporalBlock",
+    "decode_heads",
+    "CONTRACTED_PLANNER_SCHEMA",
+    "SUPPORTED_PLANNER_SCHEMAS",
+    "PrefixRepresentationSpec",
+]
