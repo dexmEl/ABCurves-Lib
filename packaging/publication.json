@@ -13,6 +13,7 @@
     ".gitattributes",
     "CMakeLists.txt",
     "docs/**",
+    "web/**",
     "examples/**",
     "tools/**",
     "packaging/**",

@@ -26,6 +26,7 @@ __pycache__/
 *.nbc
 *.nbi
 .pytest_cache/
+/.playwright-mcp/
 .venv/
 venv/
 *.egg-info/

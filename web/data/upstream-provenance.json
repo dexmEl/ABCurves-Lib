@@ -1,0 +1,1672 @@
+{
+  "schema": "abcurves.showcase.provenance.v1",
+  "original_static_demo_sha256": "bc3a84c9740ddce3cec4a494fec286818d110049c49cb739e636c038c66be7be",
+  "original_source_receipt_sha256": "34f79ebed76ed5efb53b99cdd779b7357283a71c8599a126ca993301df24b29c",
+  "original_selection_sha256": "c60dd52ad9d6ae418bc479fec38e064a2dfbb8cc8643b284fa48ed62e9a75e4a",
+  "original_static_context_note": "event fixtures contain 160 prefix reports; the preceding 96 reports are an explicit quiet-start assumption",
+  "motion": {
+    "file": "data/motion.json.gz",
+    "json_sha256": "24ad71888514850785299fa6a623657bf466d9f1a99f671c8a15ff56e8a35017",
+    "gzip_sha256": "b8042fb57120b1b073a2217b5a701f702c71cc4c9673079514fcd6f510ce09d4",
+    "encoding": "UTF-8 JSON in gzip; each motion retains its exact original base64 zlib block",
+    "arrays": "Little-endian float64, float32 or int16; eight-byte-aligned offsets"
+  },
+  "selection": {
+    "static": 24,
+    "continuous": [
+      "H17",
+      "H13",
+      "H05",
+      "H10",
+      "H14",
+      "H12",
+      "H04",
+      "H09",
+      "H11",
+      "H16",
+      "H18",
+      "S01",
+      "S05",
+      "S06",
+      "S08",
+      "S02",
+      "S09",
+      "S10"
+    ],
+    "renderer_static_examples": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      14,
+      18,
+      23
+    ],
+    "default": "continuous/H17"
+  },
+  "qualification": {
+    "purpose": "Curated recorded and designed demonstrations, not a held-out benchmark or detection study",
+    "motion_generation": "Frozen approved outputs; the site build does not regenerate model samples",
+    "continuous_start": "Approved source demos initialize from 160 raw common-angular displacement bins and the raw current anchor; these are not the later W5-assisted-start qualification fixtures",
+    "continuous_targets": "The browser may display the recorded target path as a visual guide; this is not a claim that the runtime receives future targets",
+    "renderer_comparison": "Real human reports versus renderings of the same smoothed human motion; each new comparison has 256 genuine preceding reports",
+    "readme_assets": [
+      "continuous/H18",
+      "continuous/H17"
+    ]
+  },
+  "assets": [],
+  "examples": [
+    {
+      "id": "continuous/H17",
+      "archive_sha256": "b5daf1f0c9f15959b1ba3e6102397a33ffe1dc67323bc6b1eece565975dfe494",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "old_person1:s069_segment070_part00",
+        "person": "person1",
+        "parent": "person1:scenario:069",
+        "group": "stimulus:e3914a01b24b468784e5",
+        "split": "train",
+        "family": "random_zigzag",
+        "guide": true,
+        "scenario_id": 69,
+        "source_to_common": 1.0,
+        "source_counts_per_pixel": [
+          6.216468427498888,
+          6.216468427498888
+        ],
+        "source": "authenticated_old_development",
+        "ticks": 11999,
+        "file": "episodes/old_person1_s069_segment070_part00.npz",
+        "sha256": "3a6697025f40744966c5a67d696414742516137f6ec14a66e5d3dbc3ce8fa02f",
+        "cut_ms": 1640,
+        "end_ms": 9640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing",
+        "selection_manifest": "fast_selection.json",
+        "selection_sha256": "62a4763bf9e5edd083862a6d012519e25838ae36ed557c3679bcde5f866a6262",
+        "selection_metrics": {
+          "episode_id": "old_person1:s069_segment070_part00",
+          "person": "person1",
+          "split": "train",
+          "family": "random_zigzag",
+          "cut_ms": 1640,
+          "end_ms": 9640,
+          "speed_mean": 1658.3,
+          "speed_p90": 2288.9,
+          "human_within": 0.8063,
+          "human_p90_radius": 1.214,
+          "turns": 15,
+          "reversals": 2,
+          "radius_mean": 215.6,
+          "path_length": 13266
+        }
+      },
+      "source_receipt_sha256": "47d869b04ee2d55388c7dde5033c4197129f3b56f90153ad9f2826ea9a6dd98a",
+      "maximum_position_roundoff_counts": 0.0,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "6801477a012fd508ca973d7199bb3b9808d3250fa8bb6521fd904e8436d932ed",
+      "motion_metadata_sha256": "b9a8f8bf4c591f96bdb1f58fdf10e2a40fe32b9a647868742aea839925ec0941",
+      "packed_motion_sha256": "ef41d8314fc3046aff49edbd4529df554899eb46dc8e01cfee37f32fe594962b",
+      "packed_motion_bytes": 418608,
+      "compressed_motion_sha256": "dcf950dea150ac30245f87c45876ef35bf01ef63108218898529b32e7f506726",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.0,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "34220666e15b4849546ef7210995f152480d018e1a601546beb0583895372f0b",
+        "episode_id": "old_person1:s000_segment000_part00",
+        "person": "person1",
+        "parent": "person1:scenario:000",
+        "group": "stimulus:3f6931b6efe0a151e5a4",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.0,
+        "source_radians_per_native_count": 0.0003509487083280618,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "69e69fb33febca575569b0e20c033c1ca7103e0a5cbab6fd297ea7d015b7d5e7",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          6.216468427498888,
+          6.216468427498888
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H13",
+      "archive_sha256": "0d1af1b2b04e5469ec71ec6e0250db68040ede0ecb6f2c707c882e057efb698d",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "person3_s046_seg049_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:046",
+        "group": "person3:g046",
+        "split": "validation",
+        "family": "curved_pursuit",
+        "guide": true,
+        "scenario_id": 46,
+        "source_to_common": 1.834436464754586,
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ],
+        "source": "person3_authenticated_capture",
+        "start_qpc": 19326470000,
+        "ticks": 12999,
+        "file": "episodes/person3_s046_seg049_00_00.npz",
+        "sha256": "e769d0d2e08a5a4115658458dd41402df011a9f9fa801e29bb691045ed5e9517",
+        "cut_ms": 1140,
+        "end_ms": 9140,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing",
+        "selection_manifest": "fast_selection.json",
+        "selection_sha256": "62a4763bf9e5edd083862a6d012519e25838ae36ed557c3679bcde5f866a6262",
+        "selection_metrics": {
+          "episode_id": "person3_s046_seg049_00_00",
+          "person": "person3",
+          "split": "validation",
+          "family": "curved_pursuit",
+          "cut_ms": 1140,
+          "end_ms": 9140,
+          "speed_mean": 1988.3,
+          "speed_p90": 2800.2,
+          "human_within": 0.9815,
+          "human_p90_radius": 0.786,
+          "turns": 1,
+          "reversals": 1,
+          "radius_mean": 131.7,
+          "path_length": 15906
+        }
+      },
+      "source_receipt_sha256": "469a521e2b0cccea5f90740e7bde612839aef435c92a2114d591192114f82c41",
+      "maximum_position_roundoff_counts": 1.2278178473934531e-11,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "2011a0a440a30987f674532ed699c166e703fb276ea457bc10bd763b712d7b61",
+      "motion_metadata_sha256": "0efcafbd83d5094e9967eaecbcfc9265bb0bbb24b1a070c65628d1b8c4b56f97",
+      "packed_motion_sha256": "9e67861bc659cc669ce08c19184049a58b4536aa81b49f4b25a8d9be012fc171",
+      "packed_motion_bytes": 418608,
+      "compressed_motion_sha256": "4eb19f6c6573c7586c0c82f27796e22822b792d127981a59897bfdfa4f270bab",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H05",
+      "archive_sha256": "c4b3f4097a205814021a7ffa0294a83224c2140c2dc594aa55587ebd88c0721b",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "old_person1:s012_segment012_part00",
+        "person": "person1",
+        "parent": "person1:scenario:012",
+        "group": "stimulus:e03cabd408e4e28188da",
+        "split": "validation",
+        "family": "stop_and_go",
+        "guide": true,
+        "scenario_id": 12,
+        "source_to_common": 1.0,
+        "source_counts_per_pixel": [
+          6.216468427498888,
+          6.216468427498888
+        ],
+        "source": "authenticated_old_development",
+        "ticks": 16999,
+        "file": "episodes/old_person1_s012_segment012_part00.npz",
+        "sha256": "835dceeb7d102a86890a2f35e3aee468251d4217a359e53a776519b7c5f643d8",
+        "cut_ms": 640,
+        "end_ms": 10640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing"
+      },
+      "source_receipt_sha256": "bf4078a7f30b3b3e2bfdae2a0ce35e43ce29dea6f42ac016e0fc9c0ccd52b89b",
+      "maximum_position_roundoff_counts": 0.0,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "3f280d81ca3a9550183691d0c298887d689d33a8fdade8a02de1d240fea547e0",
+      "motion_metadata_sha256": "57def8a3a42edc5a4a03a0948bee947e81a5c179340824e396ca7b7e08c870d6",
+      "packed_motion_sha256": "dff003fabea535eb138a48588106f1e60bf80993d1b10e439fc3f0bcfa0fe4ea",
+      "packed_motion_bytes": 522608,
+      "compressed_motion_sha256": "2ab30a2151cb390fccc296b6ab797f5f2f8660e41c75d93dc761f552c90178d5",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.0,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "34220666e15b4849546ef7210995f152480d018e1a601546beb0583895372f0b",
+        "episode_id": "old_person1:s000_segment000_part00",
+        "person": "person1",
+        "parent": "person1:scenario:000",
+        "group": "stimulus:3f6931b6efe0a151e5a4",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.0,
+        "source_radians_per_native_count": 0.0003509487083280618,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "69e69fb33febca575569b0e20c033c1ca7103e0a5cbab6fd297ea7d015b7d5e7",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          6.216468427498888,
+          6.216468427498888
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H10",
+      "archive_sha256": "5b0e77378a9e9e8a1f492ce8339ff69962567ed374c664cf7a896bcf930beb7a",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "person3_s006_seg006_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:006",
+        "group": "person3:g006",
+        "split": "validation",
+        "family": "random_zigzag",
+        "guide": true,
+        "scenario_id": 6,
+        "source_to_common": 1.834436464754586,
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ],
+        "source": "person3_authenticated_capture",
+        "start_qpc": 11029560000,
+        "ticks": 15999,
+        "file": "episodes/person3_s006_seg006_00_00.npz",
+        "sha256": "13b780201ba3278e33b2e945bded073ac611ac63650ce4c2fe5804890cf12458",
+        "cut_ms": 640,
+        "end_ms": 10640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing"
+      },
+      "source_receipt_sha256": "ac7ba8832b2e1d5bfc1f2ffc258e17857ba0f3124a1bbfab23153281f2f5b413",
+      "maximum_position_roundoff_counts": 1.8339108009968186e-11,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "3931fe2a7d9e46cd56877fe043603afb54047623bc5e9fd8b459d22e88b631fd",
+      "motion_metadata_sha256": "1c7886c5b182910b02d980e5897bc365770715b970235088c9696409e6740a72",
+      "packed_motion_sha256": "d6e3b8684a75f4ca5883559e6623e3ecb17714a009debfa7c9a8d19040c33a83",
+      "packed_motion_bytes": 522608,
+      "compressed_motion_sha256": "1f94c5454f411f994bc15680eae1cd72972f833af8cd39c4e1055a3c953f5967",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H14",
+      "archive_sha256": "c7c379fa146265f89c05e5edb2c422f8b6bd2f822a562a13d2855e526d7c6172",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "old_person2:person2_s030_segment031_part00_00",
+        "person": "person2",
+        "parent": "person2:scenario:030",
+        "group": "stimulus:eac4aff659a1dff6b487",
+        "split": "validation",
+        "family": "figure_eight",
+        "guide": true,
+        "scenario_id": 30,
+        "source_to_common": 0.47511308047256456,
+        "source_counts_per_pixel": [
+          13.084187076718164,
+          13.084187076718164
+        ],
+        "source": "authenticated_old_development",
+        "ticks": 17999,
+        "file": "episodes/old_person2_person2_s030_segment031_part00_00.npz",
+        "sha256": "4c8673398b6ab1cd426176f55a4a6e97decd9458dce6f1df4c84cdea44bfa44a",
+        "cut_ms": 4140,
+        "end_ms": 12140,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing",
+        "selection_manifest": "fast_selection.json",
+        "selection_sha256": "62a4763bf9e5edd083862a6d012519e25838ae36ed557c3679bcde5f866a6262",
+        "selection_metrics": {
+          "episode_id": "old_person2:person2_s030_segment031_part00_00",
+          "person": "person2",
+          "split": "validation",
+          "family": "figure_eight",
+          "cut_ms": 4140,
+          "end_ms": 12140,
+          "speed_mean": 1816.9,
+          "speed_p90": 2410.4,
+          "human_within": 0.9026,
+          "human_p90_radius": 0.994,
+          "turns": 0,
+          "reversals": 0,
+          "radius_mean": 146.4,
+          "path_length": 14535
+        }
+      },
+      "source_receipt_sha256": "778ad1401f6509bfefe5c9c814b46d9ef2ff283ec5b6b3e6864340c2f8967b98",
+      "maximum_position_roundoff_counts": 1.211901690112427e-10,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "a71da260ac794ff6cafe42b811f1226f0c4baacb0d5b636b850ba413af1f8011",
+      "motion_metadata_sha256": "cf03af9dc0a45994ff40085ed1f0a344c3a42592618cd8b93babc07c1a1fdc7d",
+      "packed_motion_sha256": "b523c876b8bd45c64a791b0b1670c719a97643f8bb93b6f9d80e313325515f72",
+      "packed_motion_bytes": 418608,
+      "compressed_motion_sha256": "d324b238fcaad60a7b7834825e338bff2829ca5c31058f2e51c7ff4cd557fcf4",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 0.47511308047256456,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "44a58380d67ab8b0bb6102c9df414afa2c77725b93a741a8fcb3892a8e7b36b1",
+        "episode_id": "old_person2:person2_s000_segment000_part00_00",
+        "person": "person2",
+        "parent": "person2:scenario:000",
+        "group": "stimulus:32ccfb380e15f73ca16e",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 0.47511308047256456,
+        "source_radians_per_native_count": 0.00016674032190161302,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "2bb774db922bcff9636507151de488ed32b67d03861f4c512ea949231b29f4c4",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          13.084187076718164,
+          13.084187076718164
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H12",
+      "archive_sha256": "6918d265ebc3293149c91032cc020d0a2335d9c976608440c10c9d67b0218ed7",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "person3_s018_seg020_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:018",
+        "group": "person3:g018",
+        "split": "validation",
+        "family": "roaming",
+        "guide": true,
+        "scenario_id": 18,
+        "source_to_common": 1.834436464754586,
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ],
+        "source": "person3_authenticated_capture",
+        "start_qpc": 14328110000,
+        "ticks": 23999,
+        "file": "episodes/person3_s018_seg020_00_00.npz",
+        "sha256": "d991da7a43877e8b1d5d2ff4479545e366391c48f7e5760e91cfb6b70ec37562",
+        "cut_ms": 640,
+        "end_ms": 10640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing"
+      },
+      "source_receipt_sha256": "d2035e40bb4beafcefbef4eacb81b53197fff8dc3a9798d137fbe4d3e606c6ff",
+      "maximum_position_roundoff_counts": 1.8417267710901797e-11,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "08f098d7ba26144de7b5e4b95408c6d14c1c3410a6a82e5f3ab1d43f187a4b05",
+      "motion_metadata_sha256": "f39ccc86e3348e98a7b51c5063e6e19420933570af672a5ab66503187d97a05c",
+      "packed_motion_sha256": "af17001f743f6bb6ef0200748a4e6726f7d70dba39454e0547fdc808566d9986",
+      "packed_motion_bytes": 522608,
+      "compressed_motion_sha256": "3f1747c209382130e3ca014e78aa2eb2d3ca8a2fb91e915e1f8878f19313a07c",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H04",
+      "archive_sha256": "84d2ee4dbfb61e3bd75fa2d2889fe75eb80525d353df54c274ae9ebb41323d08",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "old_person1:s053_segment054_part00",
+        "person": "person1",
+        "parent": "person1:scenario:053",
+        "group": "stimulus:1f2a975ea266778f3773",
+        "split": "validation",
+        "family": "random_zigzag",
+        "guide": true,
+        "scenario_id": 53,
+        "source_to_common": 1.0,
+        "source_counts_per_pixel": [
+          6.216468427498888,
+          6.216468427498888
+        ],
+        "source": "authenticated_old_development",
+        "ticks": 24999,
+        "file": "episodes/old_person1_s053_segment054_part00.npz",
+        "sha256": "5c5932faf2d16e00580040146b6bb50fd0a16125ea9562a51c053a5e96332f68",
+        "cut_ms": 640,
+        "end_ms": 10640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing"
+      },
+      "source_receipt_sha256": "a3f948098a700fbf83d47e93804a2bab4629c7d1de1c2a26c37a892210c6b461",
+      "maximum_position_roundoff_counts": 0.0,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "868be73d0b32e22d4fdddb85b570ad52c701f11c6f56c049b8d596531d522bbc",
+      "motion_metadata_sha256": "95b49ed6f1b958ad0cccb76e5dae779c40c0e64147d041fbd029c76983b5fb48",
+      "packed_motion_sha256": "9fa20a5e3c4d936ca3bb7d3475f14d9eb564f9ca6ebc14902aaf0e440e358d41",
+      "packed_motion_bytes": 522608,
+      "compressed_motion_sha256": "11c17fa8af6588ffa4885313d3127175e73ab7919df40291221fcfd9ce6258fa",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.0,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "34220666e15b4849546ef7210995f152480d018e1a601546beb0583895372f0b",
+        "episode_id": "old_person1:s000_segment000_part00",
+        "person": "person1",
+        "parent": "person1:scenario:000",
+        "group": "stimulus:3f6931b6efe0a151e5a4",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.0,
+        "source_radians_per_native_count": 0.0003509487083280618,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "69e69fb33febca575569b0e20c033c1ca7103e0a5cbab6fd297ea7d015b7d5e7",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          6.216468427498888,
+          6.216468427498888
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H09",
+      "archive_sha256": "8cfd3df5d2bdb61ce8234f914d4747823116312434960e7d5757008aee11c2eb",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "person3_s054_seg057_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:054",
+        "group": "person3:g054",
+        "split": "validation",
+        "family": "horizontal_strafe",
+        "guide": false,
+        "scenario_id": 54,
+        "source_to_common": 1.834436464754586,
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ],
+        "source": "person3_authenticated_capture",
+        "start_qpc": 20956490000,
+        "ticks": 23999,
+        "file": "episodes/person3_s054_seg057_00_00.npz",
+        "sha256": "e19858819088bc5692acbe4ce1b88a9aee1f32b75efd05f010d992b3d75f0ce5",
+        "cut_ms": 640,
+        "end_ms": 10640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing"
+      },
+      "source_receipt_sha256": "f7cab11549dac588391a485d444b6e14a18571007c876f7eb0190b7187b375df",
+      "maximum_position_roundoff_counts": 1.4551915228366852e-11,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "ce49c41bc1a4f1301bb54f818adcd034f39a6a0506ba91f31513266dc6aa9070",
+      "motion_metadata_sha256": "739120397b35c96414ae8f328aacd78140c4fec7e1119f298dae59c997168faa",
+      "packed_motion_sha256": "ce618a2f4ed91da6e2ce1fab662df41d2332df9dbaa821f3be5d8529dfb04840",
+      "packed_motion_bytes": 522608,
+      "compressed_motion_sha256": "371a31fe7fdbb6a7a803193d8b55c1d457854a04742ae5f2bc9ea4c2e73b0bd3",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H11",
+      "archive_sha256": "4adea6a54fd56596344e4c4648718b04161f04633560e8df1017f016f1d65d72",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "person3_s058_seg061_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:058",
+        "group": "person3:g058",
+        "split": "validation",
+        "family": "stop_and_go",
+        "guide": true,
+        "scenario_id": 58,
+        "source_to_common": 1.834436464754586,
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ],
+        "source": "person3_authenticated_capture",
+        "start_qpc": 21716500000,
+        "ticks": 21999,
+        "file": "episodes/person3_s058_seg061_00_00.npz",
+        "sha256": "efc9657c67f0ad6259cc9546a8266ed082c8e7518fc9be9accb9bd0233be1c89",
+        "cut_ms": 640,
+        "end_ms": 10640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing"
+      },
+      "source_receipt_sha256": "fd39f1be4a5fab000e9364a8ad9e01de114bfbd7b7883c5e47322a94c2791e18",
+      "maximum_position_roundoff_counts": 1.3642420526593924e-12,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "13a8783f0df365b7154024b4fa24c21b26ed821c9529b0570ce3e98d9af1e61c",
+      "motion_metadata_sha256": "4951577426417ac95d8baaa859510925f5ef03fc14a068cc9bf464dd01609422",
+      "packed_motion_sha256": "efbd8b220b0846dddd02892963714bf5bb3b1de0de9226c03ad608776d744ec9",
+      "packed_motion_bytes": 522608,
+      "compressed_motion_sha256": "056fd9262c91807bb718c2abfec30543bd1d0e0b1373541e7673fe6b2f838cf3",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H16",
+      "archive_sha256": "587619097709fac18195653c7211a87bc89f499b25a483d547cf14053961dd28",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "person3_s098_seg102_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:098",
+        "group": "person3:g098",
+        "split": "train",
+        "family": "random_zigzag",
+        "guide": true,
+        "scenario_id": 98,
+        "source_to_common": 1.834436464754586,
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ],
+        "source": "person3_authenticated_capture",
+        "start_qpc": 30147340000,
+        "ticks": 24999,
+        "file": "episodes/person3_s098_seg102_00_00.npz",
+        "sha256": "4f60dc9a718998d2c8cf134d9d4163d3e3e7a3ca64ecded0227600a6848c892d",
+        "cut_ms": 1640,
+        "end_ms": 9640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing",
+        "selection_manifest": "fast_selection.json",
+        "selection_sha256": "62a4763bf9e5edd083862a6d012519e25838ae36ed557c3679bcde5f866a6262",
+        "selection_metrics": {
+          "episode_id": "person3_s098_seg102_00_00",
+          "person": "person3",
+          "split": "train",
+          "family": "random_zigzag",
+          "cut_ms": 1640,
+          "end_ms": 9640,
+          "speed_mean": 1966.2,
+          "speed_p90": 2582.9,
+          "human_within": 0.8175,
+          "human_p90_radius": 1.155,
+          "turns": 15,
+          "reversals": 0,
+          "radius_mean": 185.8,
+          "path_length": 15730
+        }
+      },
+      "source_receipt_sha256": "e700872d11d6be62f6376b0e6109b8f81a580c543ea7e5195834b832f49a93e3",
+      "maximum_position_roundoff_counts": 2.4101609596982598e-11,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "81a933d2b3c231dbe1038df7a5c39226311d10612ef4b5c72bec8d94a6b7423c",
+      "motion_metadata_sha256": "1da1f22962b3fe3b80a9eca28dc2696dc0e8795a1d5221ac00ac5089c485648c",
+      "packed_motion_sha256": "a3d5012a1aad67608534a6aaec630dca6681e88868fec4c8cf64485a4c249f64",
+      "packed_motion_bytes": 418608,
+      "compressed_motion_sha256": "2f075d230bd2569507a6b75a0c48c1f997a6abd3b0c1ea8fbf098cf3d9dfa449",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/H18",
+      "archive_sha256": "a5237796b4192949e4e4726f68a64c2c4bc1a9ba2b5f1bb0a9c9db599ac3ec6e",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "id": "person3_s013_seg014_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:013",
+        "group": "person3:g013",
+        "split": "train",
+        "family": "roaming",
+        "guide": true,
+        "scenario_id": 13,
+        "source_to_common": 1.834436464754586,
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ],
+        "source": "person3_authenticated_capture",
+        "start_qpc": 13306600000,
+        "ticks": 20999,
+        "file": "episodes/person3_s013_seg014_00_00.npz",
+        "sha256": "f0310b1495a2140c352ef015749e5a7864b7a6885392b54c9f40856557e3813f",
+        "cut_ms": 5640,
+        "end_ms": 13640,
+        "human_path": "initial + cumulative raw common-count reports; no smoothing",
+        "selection_manifest": "fast_selection.json",
+        "selection_sha256": "62a4763bf9e5edd083862a6d012519e25838ae36ed557c3679bcde5f866a6262",
+        "selection_metrics": {
+          "episode_id": "person3_s013_seg014_00_00",
+          "person": "person3",
+          "split": "train",
+          "family": "roaming",
+          "cut_ms": 5640,
+          "end_ms": 13640,
+          "speed_mean": 1666.3,
+          "speed_p90": 2148.3,
+          "human_within": 0.9161,
+          "human_p90_radius": 0.924,
+          "turns": 1,
+          "reversals": 0,
+          "radius_mean": 140.7,
+          "path_length": 13331
+        }
+      },
+      "source_receipt_sha256": "ac45ce9d2afe23ee6decf8a4ff6057617ed745778ed35d7ae0243a9d44dd12a9",
+      "maximum_position_roundoff_counts": 1.7280399333685637e-11,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "9874380c90803f5c99360815bb18e8f605a95220be66769ba2082d99048d58a4",
+      "motion_metadata_sha256": "b41d3eef329a7da8d854565abd42b8316d486492d1f369fef5f8a49e2eec0205",
+      "packed_motion_sha256": "85c167ff6ca0a10caca51e6c9174909d3d9a7fc9cd038ee73ea2e550ab26d90c",
+      "packed_motion_bytes": 418608,
+      "compressed_motion_sha256": "70b15cf10a7205af4e350d87a3c05e14d754a7b053cd7836ea355c31e29b1a22",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/S01",
+      "archive_sha256": "3c1e1dfac1bfa2e245b1226a5d3a70399503dfc78575aecb932cc96bd7352361",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "type": "analytical designed target",
+        "human_reference": null
+      },
+      "source_receipt_sha256": "7471e7d1e45fc8a6d483125695624aeb3161e45b6b258581ea053d39316e98a8",
+      "maximum_position_roundoff_counts": 2.842170943040401e-14,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "ece280b70362840ffbb7991153b2f1773b847500190b92e360b032cc0fb44c1c",
+      "motion_metadata_sha256": "c330e17c1039529046b7dc6331e59cd2390adfe31a303d57332a6b979670b26a",
+      "packed_motion_sha256": "c1327a22ec3e5b4b2eb3ef8da7e158256776e7d842766e3348efa2b8f519196b",
+      "packed_motion_bytes": 480048,
+      "compressed_motion_sha256": "14619239bed56dbd877cbb8932ca493afa00ab38f5fa9746ed4bad6fdceef705",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/S05",
+      "archive_sha256": "e78789184284d281531495f7dea65545da8a6f3b8df15f785d3b6e27f0d72276",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "type": "analytical designed target",
+        "human_reference": null
+      },
+      "source_receipt_sha256": "80b81e8b2337e3af68be5e83c8bb824e1a3cc7d42a8f7863895b0727d717fe31",
+      "maximum_position_roundoff_counts": 1.4210854715202004e-14,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "5697ed63db0f34c1a0533ba4b92116fa0ce04eb84f477a9696d621702dacb409",
+      "motion_metadata_sha256": "82275d4178aa043707b24418074f2781fa4d4569ba36b29b23c0fcdcafe178e0",
+      "packed_motion_sha256": "e4be1b6fcf00c6552f391bbbced9b738108dfcb48c29f2fc9bda88659cc63cd0",
+      "packed_motion_bytes": 278448,
+      "compressed_motion_sha256": "1f9bc31b6764e7302663626851622646ad0264a4e337d9246779b944642f8ef9",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/S06",
+      "archive_sha256": "e5cd149256b52170d143007d9f8d649cb13c200c6c9c31dfdc4e9cee9ae28ac2",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "type": "analytical designed target",
+        "human_reference": null
+      },
+      "source_receipt_sha256": "4689aa08077eed852de794de82466f2b2a2ed7b4d7a9fb9a8ddf081d24a52a10",
+      "maximum_position_roundoff_counts": 2.842170943040401e-14,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "35b62f98ccbe57f292a415de54d3487603d5722f71275ee05dc828962d0be0a0",
+      "motion_metadata_sha256": "fc04000b36fd1efc247c12851463d85199ce32db5b379ae54f490ce07c430d2e",
+      "packed_motion_sha256": "e777291865704fa2a963d458a5f564cbae456b81c879e9ccb1b18e999155f647",
+      "packed_motion_bytes": 480048,
+      "compressed_motion_sha256": "e1af7a5b0fca02170a2f91934c5829e0f4fce3b82541e6bb45c055bafe32a540",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/S08",
+      "archive_sha256": "83013c8826eeeb05dae9d819b6d6a9c6be79461e9ae7022eecb30be2e1ad9ec2",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "type": "analytical designed target",
+        "human_reference": null
+      },
+      "source_receipt_sha256": "216df85c1d1a37c8d878a683bf3c68c9c6897fd34f0b585d1de5f7d7f5698e33",
+      "maximum_position_roundoff_counts": 2.842170943040401e-14,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "c03e8eb7cf537712331bfd3cd89fc11089f7e7c6cca7b5b245e0bb48ee093333",
+      "motion_metadata_sha256": "f70289b1933003b6414c9b67242e642881a03abf95e1ff6f526f274953a4a3d2",
+      "packed_motion_sha256": "78cbda6af1db731002d48f212079db55710c0c1c5e0655c596b81146ff6872b4",
+      "packed_motion_bytes": 331248,
+      "compressed_motion_sha256": "b4ece86e36794f557d233c2618dbffe55281bf8a889be7a41764e503d43c3cd5",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/S02",
+      "archive_sha256": "2c0ed6faeda5fcc17acc7a1a828346252137b65909b7fef4f6d0aab59b7b1ba3",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "type": "analytical designed target",
+        "human_reference": null
+      },
+      "source_receipt_sha256": "6650bf3a029fb8e830008c8d4a791e784484b54d28de45d03c779d6069a1795f",
+      "maximum_position_roundoff_counts": 2.842170943040401e-14,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "85df53becdba240261d9ba7eb41d056c496d66077a4deb8f60aa360f06cbd582",
+      "motion_metadata_sha256": "975d2c664fe8499a77f3d8e2c1f0f0ff239b360d879071f588f17b8bb1136bc5",
+      "packed_motion_sha256": "decec151894bc175b98d0aab344297ee2e55e8bd7959ba2af6c5d17affc0c942",
+      "packed_motion_bytes": 432048,
+      "compressed_motion_sha256": "aea867a988f18af292626e7bf0a93b0152bd2a7ed2d7df2ce36692f465ff5078",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/S09",
+      "archive_sha256": "ed3510319b88e8276355a903d0bed3f8eb2d3921943253dafb4377769afd0cf1",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "type": "analytical designed target",
+        "human_reference": null
+      },
+      "source_receipt_sha256": "0d5ecb669e226afcdcffb4cffd46b1c1c59b4d92724d23b9f0e1477a8242571d",
+      "maximum_position_roundoff_counts": 2.842170943040401e-14,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "7607ba583278668eaab98dde321fb843f7a566f5fad24209fab77b9aeca547f9",
+      "motion_metadata_sha256": "5a48d5be5cc0dd2336f30e21ddcd63f110e29c0c408df4a773f3952852cd7ae8",
+      "packed_motion_sha256": "a06e3da0f333818a9e7459829c6af30d2533c220e5b0e75063eca748b5214954",
+      "packed_motion_bytes": 384048,
+      "compressed_motion_sha256": "fc5d44065cd0ef77d6e4a6b56f1ba05c7fbffbc0fab6a444f02f540494bbe9a0",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    },
+    {
+      "id": "continuous/S10",
+      "archive_sha256": "503583bf667a1b529322ac27baf7d079e212ae04fddb74a4a16109ff10f5fa27",
+      "checkpoint_sha256": "4c71cc4d29b4a13e613afa88438f772c478fd542c1c9095d23447ecb3c4a3afa",
+      "seeds": [
+        7,
+        23,
+        101,
+        997
+      ],
+      "source": {
+        "type": "analytical designed target",
+        "human_reference": null
+      },
+      "source_receipt_sha256": "44e84799f6e0550955dc787c4df8c645cdf1fb09497930aeeedc9ca1322ed709",
+      "maximum_position_roundoff_counts": 2.5757174171303632e-14,
+      "native_reports_unchanged": true,
+      "payload_json_sha256": "997111448e07f96d6b9ee2006060ced3486ebc117ecee63dec51c04742336e6e",
+      "motion_metadata_sha256": "cc3ce68ec36fcb046005601887531a8308ad4d827c59b8241ae6b663ae323da2",
+      "packed_motion_sha256": "27e85039704360475f0015c11d9db5f12a2db3fb77bb5cfe51d7a4f479b0d34c",
+      "packed_motion_bytes": 432048,
+      "compressed_motion_sha256": "948204c3913a455daf6f9f5608e923a2bc3e3b878084828773ec57d66623d5dc",
+      "deployment_assets_manifest_sha256": "88fa9df1d65ccdf21552b7e98fea2da23c246ed618ebc1fee954464d9a17e60b",
+      "backend": "v4 standalone native B2-23",
+      "native_to_common": 1.834436464754586,
+      "renderer": {
+        "artifact": "renderer_global_h80.bin",
+        "artifact_bytes": 44484,
+        "artifact_sha256": "8fea217f76c3f501dab9576cbac5cd26970d30d01eedb95da3ca3946a0f52f8b",
+        "native_library": "abcurves_renderer.dll",
+        "native_library_sha256": "730bafac2b6a8431628401fc6e2239a12b787cd730791d453b4dec0cb47d3a41",
+        "context_ticks": 256,
+        "state_bytes": 5088,
+        "model_view_bytes": 208,
+        "lateral_offset_penalty": 1.5
+      },
+      "renderer_profile": {
+        "source_index_sha256": "e02413e5a7461fa9e7a858943885218264750e224fa7b9d640d4e32fdd5badda",
+        "source_episode_sha256": "96d47bdd5e9502ab51a36fa15acddaad64bd29d785b98079504351dd31318189",
+        "episode_id": "person3_s000_seg000_00_00",
+        "person": "person3",
+        "parent": "person3:scenario:000",
+        "group": "person3:g000",
+        "split": "train",
+        "profile_interval_ms": [
+          384,
+          640
+        ],
+        "profile_bin_endpoints_ms": [
+          385,
+          640
+        ],
+        "cut_ms": 640,
+        "rows": 256,
+        "clock": "Same right-closed1ms capture bins as prepared authoritative USB stream; not USB report-order resampling.",
+        "canonical_axes": "x right,y up; native canonical dy was negated once by original decoder",
+        "native_to_common": 1.834436464754586,
+        "source_radians_per_native_count": 0.000643793107815518,
+        "common_radians_per_count": 0.0003509487083280618,
+        "native_int16_sha256": "9950c0491eaff8102791266ffb1e93ac9355004edfd4cea22356cea09009cb5e",
+        "conversion": "Exact inverse of authenticated raw native/common multiplication, checked to1e-10; no smooth or generated profile data.",
+        "source_counts_per_pixel": [
+          2.2591746100913292,
+          2.2591746100913292
+        ]
+      },
+      "renderer_seeds": [
+        3461203795,
+        2982503011,
+        3404701137,
+        2939340113
+      ]
+    }
+  ],
+  "copy_note": "Continuous Planner subset only; motion payloads and original entry hashes retained unchanged. README GIFs, Static and Renderer sections excluded."
+}

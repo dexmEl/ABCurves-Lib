@@ -6,7 +6,7 @@ ABCurves turns a target's position, expressed as an angular error, into a smooth
 
 Available for **C++, C, Python, and Rust**. Your application handles target detection and device output; ABCurves handles trajectory planning.
 
-[Get started](docs/quick-start.md) · [Documentation](docs/README.md) · [Examples](examples/README.md) · [API reference](docs/api/overview.md)
+[Get started](docs/quick-start.md) · [Documentation](docs/README.md) · [Examples](examples/README.md) · [API reference](docs/api/overview.md) · [Planner comparison](https://dexmEl.github.io/ABCurves-Lib/)
 
 ## What is ABCurves?
 
@@ -63,6 +63,8 @@ Initialization, fresh decision, and motor inference rows use the **32 ms model**
 Motor inference alone has a smaller gain; most of the overall improvement is outside it. These local results are not hard real-time guarantees. [Model loading, Renderer timing, all function/model measurements, tails and methodology →](docs/guides/performance.md)
 
 ## Numerical accuracy
+
+An interactive [Continuous Planner comparison site](web/README.md) shows the original Python and native library side by side on 18 upstream demo inputs, with four seeds, measured errors and per-sample downloads. Its 634,800-sample corpus includes one differing movement-head choice and is reported separately from the legacy fixture results below.
 
 Across **816,000 movement samples in 102 deterministic scenarios**, the original Python implementation and optimized C++ engine produced the same timestamps, commitment boundaries, selected movement heads, and modes.
 

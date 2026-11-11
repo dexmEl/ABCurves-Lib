@@ -1,5 +1,7 @@
 # Numerical accuracy against the original reference
 
+The [interactive Continuous Planner comparison](../../web/README.md) is a separate campaign using the original showcase’s 18 demo inputs and four seeds, with an explicit matched 1 kHz receipt schedule and unmodified upstream Python. Its 634,800 samples include one differing movement-head choice (H04, seed 101; max position difference 3.7429017638999085 counts). The fixture-corpus bounds on this page do not apply to those demo reruns.
+
 The optimized engine closely follows the original Python Continuous Planner, but **does not produce bit-for-bit identical smooth trajectories in general**. This page reports newly executed comparisons on 2026-11-10, rather than treating exact parity between native language bindings as proof of upstream equality.
 
 Three comparisons serve different purposes:

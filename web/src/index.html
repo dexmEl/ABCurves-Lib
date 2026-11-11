@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f9">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23f6f7f9'/%3E%3Cpath d='M5 25C16 25 14 7 27 7' fill='none' stroke='%232563eb' stroke-width='3'/%3E%3C/svg%3E">
+  <meta name="description" content="Compare the original ABCurves Continuous Planner with ABCurves-Lib on the same 18 demo inputs, with synchronized playback and measured numerical differences.">
+  <title>ABCurves · Continuous Planner comparison</title>
+  <style>__STYLES__</style>
+</head>
+<body>
+  <header>
+    <div class="brand">ABCurves<span>Continuous Planner comparison</span></div>
+    <a href="https://optima-manent.github.io/ABCurves/#continuous/H17" target="_blank" rel="noopener noreferrer">Original showcase ↗</a>
+  </header>
+  <main>
+    <div class="intro">
+      <p class="eyebrow">Original Python × native C++</p>
+      <h1>Same inputs. Two implementations.</h1>
+      <p>Explore the original showcase’s 18 Continuous Planner examples with matching prefixes, targets and seeds. Compare the paths, then inspect the differences at every millisecond.</p>
+      <p class="scope">Matched reruns of the smooth 32 ms planner. <a href="#method">How this comparison works ↓</a></p>
+    </div>
+
+    <section class="comparison" aria-label="Continuous Planner comparison">
+      <div class="controls">
+        <button id="prev" class="arrow" aria-label="Previous example" title="Previous example (←)">‹</button>
+        <label class="sr-only" for="pick">Choose an example</label>
+        <select id="pick"></select>
+        <button id="next" class="arrow" aria-label="Next example" title="Next example (→)">›</button>
+        <button id="browse" aria-haspopup="dialog">Examples</button>
+        <span class="spacer"></span>
+        <label for="seed">draw <select id="seed" aria-label="Choose draw and seed"></select></label>
+        <button id="play" aria-label="Pause" aria-pressed="true">Ⅱ pause</button>
+        <button id="replay" aria-label="Replay from beginning" title="Replay">↻</button>
+      </div>
+      <div class="view-controls">
+        <label for="speed">speed <input id="speed" type="range" min="0.1" max="2" step="0.05" value="1"><output id="speedLabel" for="speed">1.00×</output></label>
+        <label for="trail">trail <select id="trail"><option value="600">0.6 s</option><option value="1200" selected>1.2 s</option><option value="2400">2.4 s</option><option value="0">full path</option></select></label>
+        <label><input id="follow" type="checkbox" checked> follow motion</label>
+        <label><input id="guide" type="checkbox" checked> target path</label>
+        <label><input id="overlay" type="checkbox"> overlay other output</label>
+        <button id="fit">reset view</button>
+      </div>
+      <div id="loadStatus" role="status">Loading comparison…</div>
+      <div id="panes" class="panes" aria-label="Synchronized motion comparison">
+        <article class="pane"><h2><i class="sw original"></i>Original ABCurves <span>Python</span></h2><canvas id="original" tabindex="0" role="img" aria-label="Original Python planner path. Drag to pan; scroll or pinch to zoom."></canvas></article>
+        <article class="pane"><h2><i class="sw native"></i>ABCurves-Lib <span>C++</span></h2><canvas id="native" tabindex="0" role="img" aria-label="Native C++ planner path. Drag to pan; scroll or pinch to zoom."></canvas></article>
+      </div>
+      <div class="timeline"><label class="sr-only" for="time">Playback time in milliseconds</label><input id="time" type="range" min="0" max="8000" step="1" value="0"><output id="clock" for="time">0.000 / 8.000 s</output></div>
+      <div class="legend"><span><i class="sw original"></i>original</span><span><i class="sw native"></i>our library</span><span><i class="sw target"></i>target</span><span><i class="sw prefix"></i>shared prefix</span><span class="gesture-help">Drag to pan · scroll or pinch to zoom · Space to pause</span></div>
+    </section>
+
+    <section class="numbers" aria-labelledby="accuracyTitle">
+      <div class="section-line"><h2 id="accuracyTitle">Numerical accuracy</h2><span id="caseLabel"></span></div>
+      <p class="caption">Errors below cover the entire selected draw, per axis in common angular counts. Smaller values mean closer agreement.</p>
+      <div class="metrics">
+        <div><span>Max position difference</span><strong id="maxPosition">—</strong><small id="degrees">common angular counts</small></div>
+        <div><span>Max displacement difference</span><strong id="maxDisplacement">—</strong><small>common angular counts / 1 ms</small></div>
+        <div><span>Position RMSE</span><strong id="rmse">—</strong><small>over both axes and all samples</small></div>
+        <div><span>Timing &amp; decisions</span><strong id="diagnostics">—</strong><small id="diagnosticDetail">timestamps, heads, modes, boundaries</small></div>
+      </div>
+      <div class="chart-head"><h3>Position difference over time</h3><span><i class="sw original"></i>ΔX <i class="sw native"></i>ΔY · library − original</span></div>
+      <canvas id="errorChart" role="img" aria-label="Signed X and Y position differences over the full selected draw; a vertical line marks playback time."></canvas>
+      <p id="chartScale" class="caption"></p>
+      <div class="sample-head"><h3>Sample inspector</h3><output id="sampleTime">0 µs</output><button id="worst">Jump to largest position difference</button><button id="download">Download draw CSV</button></div>
+      <div class="table-scroll"><table><thead><tr><th scope="col">Value</th><th scope="col">Original ABCurves</th><th scope="col">ABCurves-Lib</th><th scope="col">Difference</th></tr></thead><tbody id="sampleRows"></tbody></table></div>
+      <p id="exact" class="caption"></p>
+    </section>
+
+    <section id="method" class="method" aria-labelledby="methodTitle">
+      <h2 id="methodTitle">A reproducible comparison</h2>
+      <p id="aggregate"></p>
+      <p>Both implementations use the frozen B2-23 model, the same initial position, and the four published planner seeds. Recorded examples share 160 displacements reconstructed from the published prefix; designed targets start from rest. Target position at millisecond <em>k</em> is received at <em>k</em> ms; output is compared at every closed 1 ms endpoint. The page plays recorded results from these runs.</p>
+      <p>The upstream showcase publishes rendered integer reports and target guides. Its original target receipt schedule, raw prefixes and Renderer profiles are not fully included. These are fresh, matched smooth-planner reruns of those demo inputs; their paths can differ from the original frozen animations. The comparison covers a finite set of curated demos.</p>
+      <details><summary>Source versions and measurement details</summary><p id="versions"></p><p>Position and displacement errors use the full binary64 outputs. Maximum error is the largest absolute X or Y difference. MAE and RMSE use all scalar components. Exact-pair counts require numerical equality on both axes, with no tolerance. All eight timing and decision checks are compared at every sample. Small float differences can accumulate; matching decisions and timing are reported separately.</p><p id="environment"></p><p><a href="data/comparison.json" download>Download metrics and provenance JSON</a> · <a href="https://github.com/dexmEl/ABCurves-Lib/tree/main/web">Build and reproduction instructions</a></p></details>
+    </section>
+  </main>
+  <footer>Adapted from <a href="https://github.com/optima-manent/ABCurves/tree/e197441f8d343d3b4a4069c7cae20764d0953d15/web">ABCurves by Optima Manent</a>. Software and models: <a href="LICENSE">MIT</a>. Dataset-derived demo material: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="NOTICE">Attribution and modifications</a>.</footer>
+  <dialog id="gallery" aria-labelledby="galleryTitle"><div class="dialog-head"><h2 id="galleryTitle">Choose a motion</h2><button id="closeGallery" aria-label="Close examples">×</button></div><div id="cards"></div></dialog>
+  <noscript><p>Enable JavaScript to explore the comparison. The metrics are also available in <a href="data/comparison.json">JSON format</a>.</p></noscript>
+  <script type="application/json" id="comparisonData">__COMPARISON__</script>
+  <script>__APP__</script>
+</body>
+</html>

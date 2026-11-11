@@ -1,0 +1,21 @@
+ABCurves Continuous Planner comparison
+
+Adapted from the Continuous Planner section of ABCurves by Optima Manent:
+https://github.com/optima-manent/ABCurves
+Upstream revision: e197441f8d343d3b4a4069c7cae20764d0953d15
+Copyright (c) 2026 Optima Manent. Software/model license: MIT (see LICENSE).
+
+Dataset-derived demonstration material is by Optima Manent, CC BY 4.0:
+https://github.com/optima-manent/ABCurves
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Modifications: retains only the 18 Continuous Planner examples, derives raw
+prefix displacements from the published positions, explicitly supplies one
+causal target receipt per millisecond, and reruns the pinned original Python
+planner and ABCurves-Lib C++ planner. Adds synchronized two-pane playback,
+numerical differences, raw sample inspection/download, and source provenance.
+These smooth output paths are new matched reruns, not the original frozen
+integer Renderer outputs. No upstream endorsement is implied.
+
+The original compressed demonstration payloads and their provenance hashes
+are preserved for source verification. Raw capture datasets are not included.
