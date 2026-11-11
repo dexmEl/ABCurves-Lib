@@ -1,6 +1,6 @@
 # ABCurves
 
-This library is a tuned / streamlined implementation of ABCurves. None of this would be possible without the foundation made by [Optima Manent](https://github.com/optima-manent) If you like this project and want to learn more about how it works, go check out and star the [Original Project](https://github.com/optima-manent/ABCurves). 
+This library is a tuned / streamlined implementation of ABCurves. None of this would be possible without the foundation made by [Optima Manent](https://github.com/optima-manent). If you like this project and want to learn more about how it works, go check out and star the [Original Project](https://github.com/optima-manent/ABCurves). 
 
 **Fast, native movement planning powered by learned trajectories.**
 
