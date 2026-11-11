@@ -1,5 +1,7 @@
 # ABCurves
 
+This library is a tuned / streamlined implementation of ABCurves. None of this would be possible without the foundation made by [Optima Manent](https://github.com/optima-manent) If you like this project and want to learn more about how it works, go check out and star the [Original Project](https://github.com/optima-manent/ABCurves). 
+
 **Fast, native movement planning powered by learned trajectories.**
 
 ABCurves turns a target's position, expressed as an angular error, into a smooth sequence of movements toward it. This optimized **C++20** implementation generates complete movement commitments [**approximately 2.5–2.9× faster**](#performance) than the original Python implementation in the measured benchmarks.
