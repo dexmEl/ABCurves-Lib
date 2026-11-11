@@ -60,6 +60,14 @@ with Model.embedded(16) as model, Planner(model) as planner:
         second = controller.next_segment()
 ```
 
+## Feedback latency and on-target stability
+
+For image-based feedback, consider compensating the angular error for camera movement between capture and receipt. Use measured or estimated executed movement; generated trajectories may run ahead of physical execution. Moving targets may also need a target-motion estimate. Keep the original capture and receipt timestamps truthful. ABCurves uses them for observation timing and validation, but does not automatically compensate capture-time camera movement.
+
+A small angular deadband with hysteresis can reduce repeated corrections caused by detection noise near the aiming reference. Enter the on-target state inside a smaller threshold, and resume pursuit only outside a larger threshold. Tune both thresholds to detector noise, calibration and acceptable aiming error; there is no universal setting. Apply this policy to the application's target estimate and pursuit state.
+
+If the application pauses pursuit, submit an explicit target-unavailable observation; simply withholding updates retains the previous target. Neither a deadband nor target loss cancels movement already generated. These policies can reduce overshoot and small corrections, but do not guarantee an immediate stop. Keep generated segments and planner state consistent with output execution.
+
 ## Behavior to rely on
 
 - Observations can arrive asynchronously, including while a segment is being consumed. Serialize access to shared instances.

@@ -41,6 +41,8 @@ flowchart TD
 
 Detection, calibration, output timing and device communication belong to your application. ABCurves needs no capture FPS, physical mouse position, execution feedback or acknowledgments. [Integration guide →](docs/integration.md)
 
+For image-based feedback, consider application-side **capture-latency compensation** to reduce overshoot from stale observations, plus a small **on-target deadband with hysteresis** to reduce unnecessary corrections from detection noise. Capture/receipt timestamps alone do not compensate camera movement. These policies do not cancel already committed movement; see [feedback and on-target stability](docs/integration.md#feedback-latency-and-on-target-stability).
+
 ## Performance
 
 **Complete trajectory generation was approximately 2.5–2.9× faster** in the reported benchmarks.
