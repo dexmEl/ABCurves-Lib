@@ -50,6 +50,8 @@ python web/build.py
 
 The generator downloads hash-pinned upstream source and model files into `build/upstream-showcase/` if absent. `--reference another/cache` selects another cache. It verifies every file against [data/reference.json](data/reference.json) and uses that unmodified source instead of the locally extended `Native/` Python implementation. The native planner sources and weights are never edited. The generator intentionally retains mismatches; a changed numerical result requires reviewing and rebuilding the public evidence.
 
+Native source provenance includes only Git-tracked source files, so local Python installation metadata and caches are not required to build the site from a clean checkout. Check this with `python -m unittest discover -s web/qa -p test_provenance.py`.
+
 ## Browser verification
 
 With the preview server running, install the optional browser tooling into ignored build output:

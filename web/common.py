@@ -8,6 +8,7 @@ import json
 import math
 from pathlib import Path
 import struct
+import subprocess
 import zlib
 
 ROOT = Path(__file__).resolve().parent
@@ -22,6 +23,13 @@ def sha(data):
 def source_sha(path):
     """Hash maintained text as Git stores it, independent of checkout CRLF."""
     return sha(path.read_bytes().replace(b'\r\n', b'\n'))
+
+
+def native_source_paths(repo):
+    """Use the tracked source inventory, excluding local packaging/cache files."""
+    folders = ('lib/src', 'lib/include', 'API/c/src', 'API/c/include', 'API/python/src')
+    names = subprocess.check_output(['git', 'ls-files', '-z', '--', *folders], cwd=repo)
+    return [repo / name for name in sorted(names.decode('utf8').split('\0')) if name]
 
 
 def read_json(path):

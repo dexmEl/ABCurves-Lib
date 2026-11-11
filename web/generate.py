@@ -21,7 +21,7 @@ import urllib.request
 import zlib
 
 import numpy as np
-from common import DATA, ROOT, read_json, sha, source_sha, upstream
+from common import DATA, ROOT, native_source_paths, read_json, sha, source_sha, upstream
 
 REPO = ROOT.parent
 CHECKS = ['timestamps', 'decisions', 'motor_counts', 'modes', 'selected_heads',
@@ -178,12 +178,10 @@ def main():
                 prefix_kind='published raw prefix' if len(prefix) > 1 else 'rest (zero history)',
                 history_sha256=sha(history.astype('<f8').tobytes()), target_sha256=sha(target.tobytes())))
     sources = {}; source_bytes = {}
-    for folder in ('lib/src', 'lib/include', 'API/c/src', 'API/c/include', 'API/python/src'):
-        for path in sorted((REPO / folder).rglob('*')):
-            if path.is_file() and '__pycache__' not in path.parts:
-                name = path.relative_to(REPO).as_posix()
-                sources[name] = source_sha(path)
-                source_bytes[name] = sha(path.read_bytes())
+    for path in native_source_paths(REPO):
+        name = path.relative_to(REPO).as_posix()
+        sources[name] = source_sha(path)
+        source_bytes[name] = sha(path.read_bytes())
     output = dict(schema='abcurves.continuous.comparison.v1',
         recorded_utc=datetime.now(timezone.utc).isoformat(),
         upstream=dict(repository=pin['repository'], commit=pin['commit'], files=pin['files']),

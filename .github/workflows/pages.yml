@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Check source provenance excludes local packaging files
+        run: python -m unittest discover -s web/qa -p test_provenance.py
       - name: Verify frozen samples and build site
         run: python web/build.py --output build/site
       - uses: actions/upload-pages-artifact@v3

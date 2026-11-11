@@ -77,12 +77,7 @@
       "API/c/src/embedded.rc.in": "e5f6676a429f32e3a4c915dae37bc4b19415c179de4e8168466637c811b421bc",
       "API/c/include/abcurves.h": "7c393775069afb0c00f60dc1490fd3347bcf370e804ef96e87c1296cd9a740c4",
       "API/python/src/abcurves_native/__init__.py": "7e61c869389b9599186aeb875e39ca5c685cbddb2b9585e97979b3c088f41f39",
-      "API/python/src/abcurves_native/NOTICE": "9d3725c12ea9f8e6ae2cf0672eb09dfd7f56d8e01215a1e7bf805bd59f20c18f",
-      "API/python/src/abcurves_native.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-      "API/python/src/abcurves_native.egg-info/PKG-INFO": "0457723f547306ed6cc87d0934a31fe2914c5f5123eec39c8ad239951bd2ac75",
-      "API/python/src/abcurves_native.egg-info/requires.txt": "163b695a32cf9386b85d6a501650604dc2fe661b1c83dca22033f6ccd8a434d0",
-      "API/python/src/abcurves_native.egg-info/SOURCES.txt": "c33cb2bb458d06e30ce239b7241cf5915974b2476538547dc1c67ea9405d9ebc",
-      "API/python/src/abcurves_native.egg-info/top_level.txt": "70dc15491533afd6b37a162bdeead873d1abeb002dbbc1cf302a23676bd9600e"
+      "API/python/src/abcurves_native/NOTICE": "9d3725c12ea9f8e6ae2cf0672eb09dfd7f56d8e01215a1e7bf805bd59f20c18f"
     },
     "model_sha256": "cc38312f2df704fe132068abd930dd6be8c3ea3755fe75ba62d3d3d322ece3f5",
     "source_bytes_sha256": {
@@ -111,12 +106,7 @@
       "API/c/src/embedded.rc.in": "e5f6676a429f32e3a4c915dae37bc4b19415c179de4e8168466637c811b421bc",
       "API/c/include/abcurves.h": "a9f668d2b8753aaa4030ca8b48b927f912f1052d7d4fd71adf7f7252dd19c469",
       "API/python/src/abcurves_native/__init__.py": "2cb69e3315869f30e846c9c53da6841feb1896ead1d2f5db1af4469b625417ff",
-      "API/python/src/abcurves_native/NOTICE": "393e3aa163769fea7e8763b2282cb09d61c098c37c2a85f3bfd081ee9be9cb5b",
-      "API/python/src/abcurves_native.egg-info/dependency_links.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-      "API/python/src/abcurves_native.egg-info/PKG-INFO": "afe621d50143c5735f814fba1b1559debf5930c4ec82f1aae05c26150d92e3b5",
-      "API/python/src/abcurves_native.egg-info/requires.txt": "163b695a32cf9386b85d6a501650604dc2fe661b1c83dca22033f6ccd8a434d0",
-      "API/python/src/abcurves_native.egg-info/SOURCES.txt": "c33cb2bb458d06e30ce239b7241cf5915974b2476538547dc1c67ea9405d9ebc",
-      "API/python/src/abcurves_native.egg-info/top_level.txt": "70dc15491533afd6b37a162bdeead873d1abeb002dbbc1cf302a23676bd9600e"
+      "API/python/src/abcurves_native/NOTICE": "393e3aa163769fea7e8763b2282cb09d61c098c37c2a85f3bfd081ee9be9cb5b"
     },
     "source_hash_policy": "sources: SHA-256 with CRLF normalized to LF; source_bytes_sha256: exact measurement checkout bytes"
   },
