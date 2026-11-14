@@ -16,7 +16,7 @@ cmake --build build/api --config Release --parallel 4
 ctest --test-dir build/api -C Release --output-on-failure
 ```
 
-`Native/` is ordinary tracked reference/Renderer source; no submodule setup is needed. No training or model export is required. Choose a bundle from `lib/models/{32,16,8}ms`, containing both `manifest.json` and `model.abcmodel`.
+`Native/` is ordinary tracked reference/Renderer source; no submodule setup is needed. No training or model export is required. The ABI 1.5 Windows DLL embeds all three planner models and the Renderer model. For native C++ or external-model examples, choose a bundle from `lib/models/{32,16,8}ms`, containing both `manifest.json` and `model.abcmodel`.
 
 The C ABI DLL/import library and examples are in `build/api/Release`. Native probe tools are in `build/api/engine/Release`. `cmake -S API` and `cmake -S lib` remain supported alternate entry points.
 
@@ -28,7 +28,7 @@ cmake --install build/api --config Release --prefix build/install
 
 Installed CMake targets are `abcurves::native` (C++), `abcurves::c` (C), and `abcurves::renderer_core`. C includes `<abcurves.h>`; C++ includes `<abcurves/native.hpp>`. Use matching x64 Release/Debug configuration and runtime.
 
-CMake installation installs libraries and headers; [SDK staging](../../packaging/README.md) additionally selects models and documentation. Python wheels keep models external. See the language guide for [C++](cpp.md), [C](c.md), [Python](python.md), or [Rust](rust.md), then [Quick Start](../quick-start.md).
+CMake installation installs libraries and headers; [SDK staging](../../packaging/README.md) additionally selects external models and documentation. Locally built Windows Python wheels include the DLL and its embedded models; external bundles remain optional. See the language guide for [C++](cpp.md), [C](c.md), [Python](python.md), or [Rust](rust.md), then [Quick Start](../quick-start.md).
 
 A standalone consumer verifies installation without source include/library paths:
 

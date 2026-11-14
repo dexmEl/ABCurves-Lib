@@ -130,9 +130,17 @@ int main(int argc, char** argv) {
         auto options = abcurves_dll::Planner::options(library);
         options.seed = 7;
         std::array<abc_vec2, 164> raw{};
-        auto history = abcurves_dll::prepare_history(library, raw, {});
+        raw.fill({0.25, -0.125});
+        const abc_vec2 observed_position{23, -7};
+        auto history = abcurves_dll::prepare_history(library, raw, observed_position);
+        require(history.filtered_anchor.x != observed_position.x && history.filtered_anchor.y != observed_position.y,
+                "nonzero raw prefix must exercise the filtered anchor");
+        options.initial_position = history.filtered_anchor;
         options.history = history.samples.data(); options.history_count = history.samples.size();
         abcurves_dll::Planner planner(model, options);
+        const auto initial = planner.state().position;
+        require(initial.x == history.filtered_anchor.x && initial.y == history.filtered_anchor.y,
+                "planner did not start at the filtered anchor");
         auto config = abcurves_dll::SegmentController::options(library);
         abcurves_dll::SegmentController controller(planner, config);
         controller.relative({120.0, -7.0}, 0, 0);
@@ -140,6 +148,8 @@ int main(int argc, char** argv) {
         abc_segment_metadata metadata{};
         auto written = controller.next_segment_into(samples, metadata);
         if (!written || written > samples.size()) throw std::runtime_error("invalid segment length");
+        require(metadata.initial_position.x == history.filtered_anchor.x && metadata.initial_position.y == history.filtered_anchor.y,
+                "segment did not preserve the filtered anchor");
         for (const auto& sample : std::span(samples).first(written))
             std::cout << sample.timestamp_us << ' ' << sample.displacement.x << ' ' << sample.displacement.y << '\n';
         auto renderer = abcurves_dll::Renderer::embedded(library);

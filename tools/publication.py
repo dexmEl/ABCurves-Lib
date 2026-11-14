@@ -71,11 +71,6 @@ def stage_runtime(dll):
         files.append((ROOT / name, target))
     for name in configuration()['sdk']['documents']:
         files.append((ROOT / name, Path(name)))
-    for name in ('docs/quick-start.md', 'docs/getting-started/building.md',
-                 'docs/getting-started/c.md', 'docs/getting-started/cpp.md',
-                 'docs/getting-started/python.md', 'docs/getting-started/rust.md',
-                 'docs/api/language-parity.md'):
-        files.append((ROOT / name, Path(name)))
     files.append((ROOT / 'examples/README.md', Path('examples/README.md')))
     # Keep included links local and point source-only references to the repository.
     import re
@@ -123,7 +118,8 @@ def stage_sdk(install, models, include_renderer=False):
     generated = ROOT / 'build/sdk-documentation'
     generated.mkdir(parents=True, exist_ok=True)
     readme = generated / 'README.md'
-    readme.write_text((ROOT / 'packaging/sdk-readme.md').read_text(encoding='utf-8').replace('](../docs/', '](docs/'), encoding='utf-8')
+    readme.write_text((ROOT / 'packaging/sdk-readme.md').read_text(encoding='utf-8')
+                      .replace('](../docs/', '](docs/').replace('](../AGENTS.md)', '](AGENTS.md)'), encoding='utf-8')
     files = [(readme if relative == Path('README.md') else source, relative) for source, relative in files]
     documents = config['sdk']['documents']
     included = {source.resolve(): target for source, target in files}

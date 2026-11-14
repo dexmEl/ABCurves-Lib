@@ -5,13 +5,14 @@ For the Windows x64 DLL-only runtime, build Release and stage it with:
 ```powershell
 python tools/publication.py runtime --dll build/api/Release/abcurves.dll --out build/runtime-stage
 python API/tools/package_windows.py --dll build/api/Release/abcurves.dll --out build/wheel
-python tools/test_runtime_package.py build/runtime-stage --wheel build/wheel/abcurves_native-1.5.0-py3-none-win_amd64.whl
-python tools/release_archives.py build/runtime-stage --out build/release-assets --wheel build/wheel/abcurves_native-1.5.0-py3-none-win_amd64.whl
+python tools/test_runtime_package.py build/runtime-stage --wheel build/wheel/abcurves_native-1.5.1-py3-none-win_amd64.whl
+python tools/release_archives.py build/runtime-stage --out build/release-assets --wheel build/wheel/abcurves_native-1.5.1-py3-none-win_amd64.whl
 ```
 
-The stage includes the DLL, lightweight language interfaces, examples and license
-notices, without external models or static libraries. The release directory contains
+The stage includes the DLL, lightweight language interfaces, examples, `AGENTS.md`,
+the public documentation guides and license notices, without external models or static libraries. The release directory contains
 the minimal and complete SDK ZIPs, the wheel, and a SHA-256 manifest. See the [runtime instructions](runtime-readme.md).
+The complete SDK ZIP includes the integration assistant and offline documentation; the minimal ZIP contains only the DLL, notices and its short README.
 The wheel builder requires `uv`. The validation script below requires Python with `pytest`,
 CMake, Rust, `uv`, and an x64 Visual Studio developer shell with `dumpbin` on PATH:
 

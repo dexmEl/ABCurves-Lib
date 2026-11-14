@@ -1,0 +1,35 @@
+{
+	"name": "abcurves-docs-mcp",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"docs:build": "node scripts/build-docs.mjs",
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"format": "oxfmt --write .",
+		"lint:fix": "oxlint --fix",
+		"lint": "oxlint",
+		"start": "wrangler dev",
+		"cf-typegen": "wrangler types",
+		"pretype-check": "npm run docs:build",
+		"type-check": "tsc --noEmit",
+		"test": "npm run docs:build && node --test test/catalog.test.ts",
+		"test:live": "node scripts/test-live.mjs"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/server": "2.3.1",
+		"agents": "^0.29.0",
+		"zod": "^4.4.3"
+	},
+	"devDependencies": {
+		"@types/node": "^26.6.6",
+		"oxfmt": "^0.78.0",
+		"oxlint": "^1.71.0",
+		"typescript": "6.0.3",
+		"wrangler": "^4.162.0"
+	},
+	"engines": {
+		"node": ">=24"
+	}
+}

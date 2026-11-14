@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 project(abcurves_consumer LANGUAGES C CXX)
-find_package(abcurves 1.4 CONFIG REQUIRED)
+find_package(abcurves 1.5 CONFIG REQUIRED)
 add_executable(consumer_c ../../API/c/examples/segments.c)
 target_link_libraries(consumer_c PRIVATE abcurves::c)
 set_target_properties(consumer_c PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED YES)

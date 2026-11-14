@@ -5,7 +5,7 @@
 Python >=3.10 and the Windows x64 native DLL are qualified. The binding uses ctypes and needs no NumPy, Numba or Torch at runtime. A locally built Windows wheel includes the DLL and its embedded models:
 
 ```powershell
-python -m pip install .\abcurves_native-1.5.0-py3-none-win_amd64.whl
+python -m pip install .\abcurves_native-1.5.1-py3-none-win_amd64.whl
 ```
 
 No PyPI release is claimed. To build a wheel, see [packaging](../../packaging/README.md). For an external DLL, install the binding from source and specify its path:

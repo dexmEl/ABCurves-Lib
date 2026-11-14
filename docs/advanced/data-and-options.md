@@ -7,14 +7,16 @@ This optional reference lists exact inputs, defaults, units, buffers and metadat
 | Input | Required? | Default | Type/validation |
 |---|---|---|---|
 | Native library | C/C++/Python/Rust; C++ may also link static | Explicit/binding discovery | Same-architecture ABI 1.5 runtime for embedded models |
-| Model directory | Yes | None | Both manifest.json and model.abcmodel |
-| Model variant | Derived | Loaded bundle |32/16/8 ms, no capture FPS |
+| Model directory | External loading only | None | Both manifest.json and model.abcmodel; embedded loading needs no directory |
+| Model variant | Explicit for embedded loading; derived for external loading | Chosen variant / loaded bundle |32/16/8 ms commitment duration, independent of capture FPS |
 | Initial position | Optional | `(0,0)` | Finite float64 virtual common-count X/Y |
 | Planner seed | Optional in options |7 | uint64; low 32 affects original RNG |
 | Prepared history | Optional | Empty | Exactly 160 finite chronological 1 ms displacement pairs |
 | Raw history | Alternative prefix path | None | Exactly 164 finite pairs + explicit finite anchor; prepare to 160 and filtered anchor |
 | Diagnostic proposals | Optional advanced | Off | Native diagnostics / C flags bit 1; may add inference work |
 | Controller options | Optional | See below | Supplied at construction; replacement controller to change |
+
+The ABI 1.5 Windows DLL embeds all three planner models. Choose the embedded 8/16/32 ms API or load an external bundle using the selected [language guide](../README.md). Native C++ model loading uses external bundles.
 
 Initial velocity/history is derived internally. Targets are conditional: without one the planner can idle. Never supply physical mouse position, FPS, acknowledgments, execution feedback or ongoing external movement history.
 
@@ -79,7 +81,7 @@ C adds `struct_size`/reserved fields and uses uint32 flags; native uses bool. `v
 
 ## Planner Only and Planner + Renderer
 
-Planner Only returns smooth angular geometry for application conversion. The optional Renderer additionally needs a separate image, exactly 256 chronological int16 native-count profile reports, independent seed, and positive calibrated radians-per-native-count gain. It returns one `abc_report {int16_t dx,dy}` per sample. Reports contain no timestamps; match by index.
+Planner Only returns smooth angular geometry for application conversion. The optional Renderer uses the image embedded in the ABI 1.5 Windows DLL, or a separate image for external loading/native C++. It also requires exactly 256 chronological int16 native-count profile reports, an independent seed, and a positive calibrated radians-per-native-count gain. It returns one `abc_report {int16_t dx,dy}` per sample. Reports contain no timestamps; match by index.
 
 Renderer output is already native counts for that calibration, with internal learned texture/quantization and residual state. It is not universally calibrated for arbitrary hardware. Its Q16/int16 range is bounded; applications must honor device limits/signs. [Renderer details](renderer.md).
 

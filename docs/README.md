@@ -8,6 +8,7 @@ Start with the [Quick Start](quick-start.md), choose your language, then follow 
 | [C++](getting-started/cpp.md) / [C](getting-started/c.md) / [Python](getting-started/python.md) / [Rust](getting-started/rust.md) | Install and run one complete example in your language |
 | [Application integration](integration.md) | Required inputs, returned samples, timing, and application responsibilities |
 | [Calibration](guides/calibration.md) | Convert pixels to angular counts and movement to device counts |
+| [Integration validation](guides/integration-validation.md) | Test local wiring, conversions, scheduling and measured calibration |
 | [Standard API](api/overview.md) | Model, Planner, SegmentController, samples, reset, and optional diagnostics |
 | [Examples](../examples/README.md) | Runnable source and commands |
 

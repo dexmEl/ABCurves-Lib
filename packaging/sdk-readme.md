@@ -4,6 +4,11 @@ This Windows x64 SDK turns angular target observations into complete movement tr
 
 ## Start here
 
+**Integrating with an AI agent?** Read [AGENTS.md](../AGENTS.md) for model selection,
+calibration and implementation guidance, including the hosted documentation MCP
+setup commands. The [documentation index](../docs/README.md) covers the included
+offline guides.
+
 1. Select the included model directory (`models/16ms` in the default package; see `PUBLICATION_MANIFEST.json` for other selections).
 2. Load the model, create a planner, then create one SegmentController.
 3. Submit angular target error X/Y and capture/receipt session timestamps.

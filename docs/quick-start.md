@@ -4,13 +4,15 @@ ABCurves plans movement; your application detects targets and executes the outpu
 
 ## 1. Choose a model
 
-| Embedded model | Learned commitment | Sample interval |
-|---|---|---|
-| `32` | 32 ms | 1 ms |
-| `16` | 16 ms | 1 ms |
-| `8` | 8 ms | 1 ms |
+| Embedded model | Commitment interval | Sample interval | Selection note |
+|---|---:|---:|---|
+| `32` | 32 ms | 1 ms | Longest commitment; the default comparison baseline. |
+| `16` | 16 ms | 1 ms | Middle interval; recommended starting point if unsure. |
+| `8` | 8 ms | 1 ms | Shortest commitment; most frequent planning opportunities. |
 
-These are commitment durations, not camera FPS settings. The Windows DLL embeds each model; choose 16 ms to start. External model directories are still supported.
+The interval is how long a movement plan is committed before the planner can make its next decision. All three models return **1 ms samples**. A shorter interval can let a new observation affect a later decision sooner, but it cannot change movement that has already been generated. The interval is independent of camera FPS and device polling rate, and does not guarantee faster execution or more accurate movement. The Windows DLL embeds each model; external model directories are also supported.
+
+Quality depends on the exact model bundle and the complete application pipeline. In one user-reported comparison of earlier bundles, the 16 ms and 8 ms models overshot more and changed direction more often than the 32 ms model. Those observations apply to the bundles and test setup used there; they do not establish a universal quality ranking or a result for retrained bundles. A later synthetic replay found the retrained 16 ms bundle had the lowest target error among the compared models, while the retrained 8 ms bundle improved over its earlier version. Synthetic target error does not measure human-likeness, and a matched human-based AUC comparison for these retrained bundles has not been established. Do not describe a model as universally more natural, smooth, accurate or responsive without a matching evaluation.
 
 ## 2. Create the planner
 

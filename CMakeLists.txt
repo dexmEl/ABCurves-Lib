@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(ABCurves VERSION 1.5.0 LANGUAGES C CXX)
+project(ABCurves VERSION 1.5.1 LANGUAGES C CXX)
 include(CTest)
 option(ABC_BUILD_TESTS "Build native and C ABI regression tests" ${BUILD_TESTING})
 option(ABC_BUILD_EXAMPLES "Build C and C++ examples" ON)

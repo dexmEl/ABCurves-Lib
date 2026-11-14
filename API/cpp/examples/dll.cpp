@@ -6,9 +6,12 @@ int main() try {
     auto library = std::make_shared<abcurves_dll::Library>();
     auto model = abcurves_dll::Model::embedded(library, 16);
     auto options = abcurves_dll::Planner::options(library);
-    // Optional: initialize the planner from 164 raw movement history samples.
+    // Optional synthetic prefix for this numerical example. In production use
+    // 164 actual chronological displacements and their observed current position.
     std::array<abc_vec2, 164> raw_history{};
-    auto history = abcurves_dll::prepare_history(library, raw_history, {});
+    raw_history.fill({0.25, -0.125});
+    auto history = abcurves_dll::prepare_history(library, raw_history, {23.0, -7.0});
+    options.initial_position = history.filtered_anchor;
     options.history = history.samples.data();
     options.history_count = history.samples.size();
     abcurves_dll::Planner planner(model, options);

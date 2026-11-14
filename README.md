@@ -10,11 +10,34 @@ Available for **C++, C, Python, and Rust**. Your application handles target dete
 
 [Get started](docs/quick-start.md) · [Documentation](docs/README.md) · [Examples](examples/README.md) · [API reference](docs/api/overview.md) · [Planner comparison](https://dexmEl.github.io/ABCurves-Lib/)
 
+**Integrating with an AI agent?** Ask it to read [AGENTS.md](AGENTS.md) for a step-by-step conversation covering model selection, calibration and implementation in your project.
+Connect the hosted [documentation MCP](https://mcp.nanoed.net/abcurves) with the command for your client (no login or API key required):
+
+```shell
+# Codex CLI
+codex mcp add abcurves --url https://mcp.nanoed.net/abcurves
+
+# Claude Code (available across your projects)
+claude mcp add --transport http --scope user abcurves https://mcp.nanoed.net/abcurves
+```
+
+Then ask: "Use the ABCurves MCP to read AGENTS.md in full, then help me integrate ABCurves into this project." The MCP provides the workflow, language examples and validation guidance; your agent implements and tests locally. See the [MCP guide](mcp/README.md) for details.
+
 ## What is ABCurves?
 
 The library maintains its own virtual movement and target history, accepts timestamped observations, and returns **complete committed segments of 1 ms samples**. Targets can arrive asynchronously. You can start from rest or supply an initial movement prefix, choose a deterministic seed, and optionally use the original C99 Renderer for calibrated integer reports.
 
-The **32 ms, 16 ms, and 8 ms models** describe how long a learned movement commitment lasts. They are independent of camera FPS and device output rate. Already generated movement stays committed; newer observations become eligible at a later decision boundary. Idle segments and existing commitment remainders can be shorter.
+Choose a model by its movement commitment duration. All three return **1 ms samples**:
+
+| Model | Commitment duration | Selection note |
+|---|---:|---|
+| **32 ms** | 32 ms | Longest commitment; the default comparison baseline. |
+| **16 ms** | 16 ms | Middle interval; recommended starting point if unsure. |
+| **8 ms** | 8 ms | Shortest commitment; most frequent planning opportunities. |
+
+Shorter commitments give newer observations more frequent opportunities to affect a later plan. Already generated movement stays committed. Model duration is independent of camera FPS and device output rate; idle segments and existing commitment remainders can be shorter.
+
+The 16 ms and 8 ms variants were locally trained. Movement quality depends on the exact model bundle and application pipeline; a shorter interval does not guarantee more accurate or more natural movement. See [model-selection details](docs/quick-start.md#1-choose-a-model) for the earlier-bundle observations, retrained-model results and limits of those comparisons.
 
 ## How it works
 

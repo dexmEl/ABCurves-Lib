@@ -3,7 +3,7 @@
 | Symptom | Check |
 |---|---|
 | DLL/import failure | Match x64 architecture, select ABCURVES_LIBRARY, install matching Visual C++ runtime; DLL beside app or SDK bin on PATH |
-| Rust link failure | ABCURVES_LIB_DIR must contain abcurves.lib; runtime PATH is separate; keep both sibling crates |
+| Rust link failure | Default Windows loading needs the DLL, not an import library. With the optional `linked` feature, ABCURVES_LIB_DIR must contain abcurves.lib; runtime DLL discovery is separate. Keep both sibling crates |
 | Missing model | Pass directory containing both manifest.json and model.abcmodel; do not pass a .pt/.onnx or root models directory |
 | Corrupt/incompatible bundle | Validate manifest/hashes and exact supported architecture; do not regenerate weights during installation |
 | Status 4 on planner mutation | An exclusive controller may be attached, or genuine failure latched; inspect controller state before resetting |
@@ -15,6 +15,6 @@
 | Old output changes on next call | Reused SampleBuffer/NumPy view was overwritten; copy or use separate consumer storage |
 | Renderer not ready | Supply exactly 256 int16 profile reports then reset/begin; calibrate positive gain |
 | Genuine status 13 | Copy last error, query first-cause state/diagnostics; generation may be partially mutated and requires explicit reset |
-| Selected model missing | Check the SDK manifest or source bundle path; Python wheels keep models external. Copy the chosen bundle with LICENSE and NOTICE |
+| Selected model missing | ABI 1.5 Windows DLLs and locally built Windows Python wheels embed all three models. For external loading, check the SDK manifest or source bundle path and copy the chosen bundle with LICENSE and NOTICE |
 
 The library never schedules physical output or catches up to wall time. Generating ahead advances virtual time immediately. A missed detector update retains the target by default. Read [integration](integration.md) and [errors](advanced/diagnostics.md).
