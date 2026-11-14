@@ -37,7 +37,7 @@ int main(void) {
     abc_segment_metadata metadata = {0};
     abc_sample samples[32];
     uint64_t count = 0, i;
-    CHECK(abc_model_load_embedded(16, &model));
+    CHECK(abc_model_load_embedded(32, &model));
     CHECK(abc_planner_options_init(&options, sizeof(options)));
     CHECK(abc_segment_options_init(&segment_options, sizeof(segment_options)));
     CHECK(abc_planner_create(model, &options, &planner));
@@ -67,7 +67,7 @@ The model is embedded in the DLL. The 32-element buffer covers current models; i
 A [ready-to-run source example](../../API/c/examples/segments.c) is built by CMake:
 
 ```powershell
-build/api/Release/abc_segment_c_example.exe lib/models/16ms
+build/api/Release/abc_segment_c_example.exe lib/models/32ms
 ```
 
 Continue with [integration](../integration.md), [calibration](../guides/calibration.md) and [errors](../advanced/diagnostics.md). The [advanced C ABI reference](../advanced/legacy-api.md) covers optional introspection and exact generated signatures.

@@ -24,7 +24,7 @@ The upstream LICENSE, README, model README and DATASET_LICENSE were checked on 2
 
 ## Package scope
 
-[Publication policy](../packaging/publication.json) has no licensing restrictions on these model assets. The source package includes runtime and retained reference models. The native SDK includes selected model bundles (16 ms by default); Python wheels keep external models separate. This is a package-size choice. Include LICENSE and NOTICE when distributing selected bundles separately.
+[Publication policy](../packaging/publication.json) has no licensing restrictions on these model assets. The source package includes runtime and retained reference models. The native SDK includes selected model bundles (32 ms by default); Python wheels keep external models separate. This is a package-size choice. Include LICENSE and NOTICE when distributing selected bundles separately.
 
 [Packaging instructions](../packaging/README.md) describe the source/SDK layouts. Staging never uploads or publishes anything. The legacy `--local-validation-assets` option remains accepted and has no effect while the restricted-assets list is empty.
 

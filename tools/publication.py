@@ -165,7 +165,7 @@ def main():
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--install', type=Path, default=ROOT / 'build/install')
     parser.add_argument('--dll', type=Path, default=ROOT / 'build/api/Release/abcurves.dll')
-    parser.add_argument('--model', type=int, choices=(32,16,8), action='append', help='SDK planner variant; repeat to include several. Default: 16 ms.')
+    parser.add_argument('--model', type=int, choices=(32,16,8), action='append', help='SDK planner variant; repeat to include several. Default: 32 ms.')
     parser.add_argument('--renderer', action='store_true', help='Include the optional Renderer model image in the SDK.')
     parser.add_argument('--local-validation-assets', action='store_true',
                         help='Compatibility option: include restricted assets if policy defines any; currently all model assets are MIT-covered.')

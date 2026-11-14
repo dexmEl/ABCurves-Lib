@@ -13,7 +13,7 @@ ABCurves import or static library:
 
 int main() {
     auto dll = std::make_shared<abcurves_dll::Library>();
-    auto model = abcurves_dll::Model::embedded(dll, 16);
+    auto model = abcurves_dll::Model::embedded(dll, 32);
     abcurves_dll::Planner planner(model);
     abcurves_dll::SegmentController controller(planner);
     controller.relative({120.0, -7.0}, 0, 0);
@@ -72,12 +72,12 @@ int main(int argc, char** argv) try {
 }
 ```
 
-Use `lib/models/16ms` from the source tree, or `models/16ms` in a default binary SDK. Each sample is one millisecond of angular displacement. The 32-element buffer covers all current variants; only `count` entries are valid.
+Use `lib/models/32ms` from the source tree, or `models/32ms` in a default binary SDK. Each sample is one millisecond of angular displacement. The 32-element buffer covers all current variants; only `count` entries are valid.
 
 Run the [existing example](../../API/cpp/examples/segments.cpp) after a source build:
 
 ```powershell
-build/api/Release/abc_segment_cpp_example.exe lib/models/16ms
+build/api/Release/abc_segment_cpp_example.exe lib/models/32ms
 ```
 
 The example timestamps are simulated. Your application supplies calibrated target errors, real session timestamps and physical output scheduling. Continue with [integration](../integration.md), [calibration](../guides/calibration.md), or optional [buffer/reset/lifetime details](../advanced/state-and-memory.md).

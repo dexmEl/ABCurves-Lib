@@ -49,7 +49,7 @@ This numerical example uses simulated arrivals during the first segment. It does
 ```python
 from abcurves_native import Model, Planner, SegmentController
 
-with Model.embedded(16) as model, Planner(model) as planner:
+with Model.embedded(32) as model, Planner(model) as planner:
     with SegmentController(planner) as controller:
         controller.relative((120.0, -7.0), 0, 0)
         first = controller.next_segment()

@@ -43,7 +43,7 @@ cmake --install build/api --config Release --prefix build/install
 python tools/publication.py sdk --install build/install --out build/abcurves-windows-x64
 ```
 
-This stages the 16 ms planner model by default. Select other bundles with repeatable `--model` arguments; include the optional Renderer image with `--renderer`:
+This stages the recommended 32 ms starting model by default. Select other bundles with repeatable `--model` arguments; include the optional Renderer image with `--renderer`:
 
 ```powershell
 python tools/publication.py sdk --install build/install --model 32 --model 16 --model 8 --renderer --out build/abcurves-sdk-all-models

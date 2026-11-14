@@ -9,7 +9,7 @@ calibration and implementation guidance, including the hosted documentation MCP
 setup commands. The [documentation index](../docs/README.md) covers the included
 offline guides.
 
-1. Select the included model directory (`models/16ms` in the default package; see `PUBLICATION_MANIFEST.json` for other selections).
+1. Select the included model directory (`models/32ms` in the default package; see `PUBLICATION_MANIFEST.json` for other selections).
 2. Load the model, create a planner, then create one SegmentController.
 3. Submit angular target error X/Y and capture/receipt session timestamps.
 4. Request a complete segment and iterate the returned sample count.
@@ -25,8 +25,8 @@ From this extracted SDK in an MSVC/CMake shell:
 cmake -S examples/installed -B build/consumer -DCMAKE_PREFIX_PATH="$pwd"
 cmake --build build/consumer --config Release
 $env:PATH = "$pwd/bin;$env:PATH"
-build/consumer/Release/consumer_c.exe models/16ms
-build/consumer/Release/consumer_cpp.exe models/16ms
+build/consumer/Release/consumer_c.exe models/32ms
+build/consumer/Release/consumer_cpp.exe models/32ms
 ```
 
 Choose an included model path if your package selects a different variant. These examples print numerical samples; they do not control a device. The matching Microsoft Visual C++ runtime is required.

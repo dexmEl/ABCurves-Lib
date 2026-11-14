@@ -81,7 +81,7 @@
   "repository_tree": "https://github.com/dexmEl/ABCurves-Lib/blob/main/",
   "sdk": {
     "default_models": [
-      16
+      32
     ],
     "documents": [
       "AGENTS.md",

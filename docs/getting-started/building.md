@@ -36,8 +36,8 @@ A standalone consumer verifies installation without source include/library paths
 cmake -S examples/installed -B build/consumer -DCMAKE_PREFIX_PATH="$pwd/build/install"
 cmake --build build/consumer --config Release
 $env:PATH = "$pwd/build/install/bin;$env:PATH"
-build/consumer/Release/consumer_c.exe lib/models/16ms
-build/consumer/Release/consumer_cpp.exe lib/models/16ms
+build/consumer/Release/consumer_c.exe lib/models/32ms
+build/consumer/Release/consumer_cpp.exe lib/models/32ms
 ```
 
 ## Contributor options

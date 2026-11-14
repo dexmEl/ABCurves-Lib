@@ -15,7 +15,7 @@ The normal integration uses three objects: load a **Model**, create a **Planner*
 
 ## Load and create
 
-In Python: `Model.embedded(16)`, `Planner(model)`, then `SegmentController(planner)`. Other languages use the corresponding constructors in their guides. External model paths remain supported. Keep the planner alive while its controller is in use, and close/destroy the controller first. One controller owns target/movement operations for that planner.
+In Python: `Model.embedded(32)`, `Planner(model)`, then `SegmentController(planner)`. Other languages use the corresponding constructors in their guides. External model paths remain supported. Keep the planner alive while its controller is in use, and close/destroy the controller first. One controller owns target/movement operations for that planner.
 
 The selected variant determines 32/16/8 ms commitment behavior. Do not configure camera FPS. Defaults are sufficient to start; [prefixes and other options](../advanced/README.md) are optional.
 

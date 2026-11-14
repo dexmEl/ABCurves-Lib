@@ -12,16 +12,16 @@ Record input units and axis mapping, output conversion, monotonic clock origin, 
 
 First run a small example without a detector or device transport. Load the selected model, create a persistent Planner and SegmentController, submit a finite relative target with simulated session timestamps, and consume the returned samples. Use the exact APIs in the chosen language guide or installed headers/binding.
 
-For a source checkout, [build the library](../getting-started/building.md) in Release first. From the repository root, these existing examples exercise external model loading and segment generation with 16 ms:
+For a source checkout, [build the library](../getting-started/building.md) in Release first. From the repository root, these existing examples exercise external model loading and segment generation with the recommended 32 ms starting model:
 
 | Language | Command |
 |---|---|
-| C | `build/api/Release/abc_segment_c_example.exe lib/models/16ms` |
-| C++ | `build/api/Release/abc_segment_cpp_example.exe lib/models/16ms` |
-| Python | `.venv/Scripts/python API/python/examples/segments.py lib/models/16ms` |
-| Rust | `cargo run --manifest-path API/rust/Cargo.toml -p abcurves-native --release --example segments -- lib/models/16ms` |
+| C | `build/api/Release/abc_segment_c_example.exe lib/models/32ms` |
+| C++ | `build/api/Release/abc_segment_cpp_example.exe lib/models/32ms` |
+| Python | `.venv/Scripts/python API/python/examples/segments.py lib/models/32ms` |
+| Rust | `cargo run --manifest-path API/rust/Cargo.toml -p abcurves-native --release --example segments -- lib/models/32ms` |
 
-Replace `16ms` with the chosen model directory. For Python, install the runtime binding into that environment and set `ABCURVES_LIBRARY` to the matching DLL as described in the [Python guide](../getting-started/python.md). For Rust, configure DLL discovery as described in the [Rust guide](../getting-started/rust.md). An SDK or wheel consumer should use its installed paths and the embedded-model examples in the language guides; it does not need this repository layout.
+Replace `32ms` if you choose a different model directory. For Python, install the runtime binding into that environment and set `ABCURVES_LIBRARY` to the matching DLL as described in the [Python guide](../getting-started/python.md). For Rust, configure DLL discovery as described in the [Rust guide](../getting-started/rust.md). An SDK or wheel consumer should use its installed paths and the embedded-model examples in the language guides; it does not need this repository layout.
 
 These examples establish basic loading and API wiring. Add assertions to the host project's tests for its adapters and execution behavior; a successful example alone does not validate a complete integration.
 

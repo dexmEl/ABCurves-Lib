@@ -28,7 +28,7 @@ Save as your application's `src/main.rs`:
 use abcurves_native::*;
 
 fn main() -> Result<()> {
-    let model = Model::embedded(16)?;
+    let model = Model::embedded(32)?;
     let mut planner = Planner::new(&model, PlannerOptions::default())?;
     let mut controller = SegmentController::new(&mut planner, SegmentOptions::default())?;
     controller.relative(Vec2 { x: 120.0, y: -7.0 }, 0, 0)?;

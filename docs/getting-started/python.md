@@ -27,7 +27,7 @@ Run this from the repository root with the environment's Python:
 ```python
 from abcurves_native import Model, Planner, SegmentController
 
-with Model.embedded(16) as model, Planner(model) as planner:
+with Model.embedded(32) as model, Planner(model) as planner:
     with SegmentController(planner) as controller:
         controller.relative((120.0, -7.0), 0, 0)
         segment = controller.next_segment()
@@ -40,7 +40,7 @@ The target is angular error in common counts; the two zeros are simulated captur
 Run the [existing example](../../API/python/examples/segments.py) with:
 
 ```powershell
-.venv/Scripts/python API/python/examples/segments.py lib/models/16ms
+.venv/Scripts/python API/python/examples/segments.py lib/models/32ms
 ```
 
 Continue with [integration](../integration.md), [calibration](../guides/calibration.md), and [errors](../advanced/diagnostics.md). Optional [reusable buffers/NumPy views](../advanced/state-and-memory.md) and [feature examples](../../examples/README.md#advanced-examples) are available when needed. The separate original `abcurves` package in `Native/` is for reference work, not runtime use of this binding.

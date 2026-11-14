@@ -31,7 +31,7 @@ Then ask the agent: "Use the ABCurves MCP to read AGENTS.md in full, then help m
 
 If neither answer is known, use an opening like:
 
-> Which model would you like to use: **8 ms, 16 ms or 32 ms**? These are movement commitment durations; all three produce **1 ms samples**. If you're unsure, I recommend starting with **16 ms**.
+> Which model would you like to use: **8 ms, 16 ms or 32 ms**? These are movement commitment durations; all three produce **1 ms samples**. If you're unsure, I recommend starting with **32 ms**.
 >
 > Do you already have calibration for both your target coordinates and your movement output, or do you need help setting it up? "Partial" or "not sure" is fine.
 
@@ -39,15 +39,17 @@ If either answer is already known, ask only the missing question.
 
 | Answer | Next action |
 |---|---|
-| 32 ms | Record the selection and use it consistently. Describe it as the longest commitment interval and default comparison baseline; do not promise that it is universally more natural or accurate. |
-| 16 ms | Record the selection and use it consistently. It is the middle interval and the documented starting recommendation when the user is unsure. |
+| 32 ms | Record the selection and use it consistently. It is the recommended starting point, longest commitment interval and default comparison baseline; do not promise that it is universally more natural or accurate. |
+| 16 ms | Record the selection and use it consistently. It is the middle interval and provides more frequent planning opportunities than 32 ms. |
 | 8 ms | Record the selection and use it consistently. Describe it as the shortest commitment interval, which provides more frequent opportunities for new observations to affect a later plan. Do not imply that it can rewrite generated movement or guarantees faster execution. |
-| Unsure | Explain the commitment trade-off and recommend 16 ms as the documented starting point. If the user delegates the choice, select 16 ms and state it. |
+| Unsure | Explain the commitment trade-off and recommend 32 ms as the documented starting point. If the user delegates the choice, select 32 ms and state it. |
 | Wants to match camera FPS or device polling rate | Explain that model duration is independent of both. Every model returns 1 ms samples; ask about the desired commitment duration instead. |
 | Calibration exists | Inspect its units, axis signs, settings and conversion code in steps 3 and 4. A sensitivity number alone does not establish calibration. |
 | Calibration missing, partial or uncertain | Determine which input/output conversions are required, then guide only the missing calibration steps. |
 
-All three models return 1 ms samples. A shorter commitment interval gives the planner an earlier next decision boundary; it does not change movement already generated and does not set the camera or device update rate. Use the model-selection notes in [Quick Start](docs/quick-start.md#1-choose-a-model) when describing trade-offs. A user-reported comparison found more overshoot and direction changes for earlier 16 ms and 8 ms bundles than for 32 ms, but that result is specific to those bundles and that test. Do not carry it over to retrained bundles or claim a universal naturalness, smoothness, accuracy or responsiveness ranking. The synthetic target-error results for retrained bundles do not establish human-likeness; a matched AUC evaluation is needed for that claim.
+Recommend the 32 ms baseline because the maintainer reports stronger human-likeness/AUC results than for the 16 ms and 8 ms variants. Prioritize that comparison when choosing a starting model; earlier planning decisions or lower synthetic target error alone do not establish more human-like movement.
+
+All three models return 1 ms samples. A shorter commitment interval gives the planner an earlier next decision boundary; it does not change movement already generated and does not set the camera or device update rate. Use the model-selection notes in [Quick Start](docs/quick-start.md#1-choose-a-model) when describing trade-offs. A user-reported comparison found more overshoot and direction changes for earlier 16 ms and 8 ms bundles than for 32 ms, but that result is specific to those bundles and that test. Do not carry it over to retrained bundles or claim a universal naturalness, smoothness, accuracy or responsiveness ranking. The published evidence does not include a matched human-based AUC evaluation for the retrained bundles; their synthetic target-error results do not establish human-likeness.
 
 ## 2. Identify the host project and installation route
 
@@ -205,5 +207,5 @@ Finish by stating the selected model, where configuration and integration code l
 
 - **"16 ms, C++ on Windows, calibration is already in the project."** Inspect the existing conversions and build/output interfaces, ask only about missing clock or unit details, then implement using the appropriate C++ route. Do not restart the calibration questionnaire.
 - **"8 ms, Python, no calibration, cropped detector output."** Inspect the crop transform; collect full viewport/FOV and aiming-reference details; guide X/Y device measurements. Implement the adapters and logging while measurements are gathered, then connect verified conversion to output.
-- **"Not sure, choose for me; targets and output are radians."** Select 16 ms, verify angular axes/reference and timestamps, and integrate angle conversion. Skip pixel/device calibration and Renderer profile questions.
+- **"Not sure, choose for me; targets and output are radians."** Select 32 ms, verify angular axes/reference and timestamps, and integrate angle conversion. Skip pixel/device calibration and Renderer profile questions.
 - **"32 ms with Renderer; gain measured, no profile."** Keep that model choice, validate the gain's units, and help collect the 256-report profile. Complete independent integration work and identify the profile as the remaining Renderer requirement.

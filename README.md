@@ -31,13 +31,13 @@ Choose a model by its movement commitment duration. All three return **1 ms samp
 
 | Model | Commitment duration | Selection note |
 |---|---:|---|
-| **32 ms** | 32 ms | Longest commitment; the default comparison baseline. |
-| **16 ms** | 16 ms | Middle interval; recommended starting point if unsure. |
+| **32 ms** | 32 ms | Recommended starting point; longest commitment and default comparison baseline. |
+| **16 ms** | 16 ms | Middle interval; more frequent planning opportunities than 32 ms. |
 | **8 ms** | 8 ms | Shortest commitment; most frequent planning opportunities. |
 
 Shorter commitments give newer observations more frequent opportunities to affect a later plan. Already generated movement stays committed. Model duration is independent of camera FPS and device output rate; idle segments and existing commitment remainders can be shorter.
 
-The 16 ms and 8 ms variants were locally trained. Movement quality depends on the exact model bundle and application pipeline; a shorter interval does not guarantee more accurate or more natural movement. See [model-selection details](docs/quick-start.md#1-choose-a-model) for the earlier-bundle observations, retrained-model results and limits of those comparisons.
+Start with the **32 ms baseline**: the maintainer reports stronger human-likeness/AUC results than for the locally trained 16 ms and 8 ms variants. The shorter models allow earlier planning decisions, but that alone does not make them a better default. See [model-selection details](docs/quick-start.md#1-choose-a-model) for the earlier-bundle observations, retrained-model results and limits of those comparisons.
 
 ## How it works
 
@@ -141,7 +141,7 @@ Use the Windows x64 DLL and [Python binding](docs/getting-started/python.md), or
 ```python
 from abcurves_native import Model, Planner, SegmentController
 
-with Model.embedded(16) as model, Planner(model) as planner:
+with Model.embedded(32) as model, Planner(model) as planner:
     with SegmentController(planner) as controller:
         controller.relative((120.0, -7.0), 0, 0)  # Angular error; capture/receipt µs.
         segment = controller.next_segment()
